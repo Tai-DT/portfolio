@@ -6,7 +6,12 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "d1:create": "wrangler d1 create taido-portfolio-db",
+    "d1:migrate": "wrangler d1 execute taido-portfolio-db --remote --file=./migrations/0001_init.sql --yes",
+    "d1:migrate:local": "wrangler d1 execute taido-portfolio-db --local --file=./migrations/0001_init.sql --yes",
+    "r2:create": "wrangler r2 bucket create taido-portfolio-assets",
+    "deploy:cloudflare": "npm run build && wrangler pages deploy"
   },
   "dependencies": {
     "@cloudflare/workers-types": "^4.20250321.0",
@@ -51,6 +56,7 @@
     "embla-carousel-react": "^8.5.2",
     "framer-motion": "^12.5.0",
     "geist": "^1.3.1",
+    "hono": "^4.13.12",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.483.0",
     "next": "15.2.3",

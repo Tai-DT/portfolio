@@ -1,0 +1,31 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "taido-portfolio",
+  "compatibility_date": "2025-03-25",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "pages_build_output_dir": ".next",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "taido-portfolio-db",
+      "database_id": "17d7fd4b-583f-455d-96fe-521b27a7eda3",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "R2_BUCKET",
+      "bucket_name": "taido-portfolio-assets"
+    }
+  ],
+  "ai": {
+    "binding": "AI"
+  },
+  "vars": {
+    "SITE_DOMAIN": "taido.dev",
+    "OWNER_NAME": "Tài Đỗ (Kai)",
+    "GITHUB_URL": "https://github.com/Tai-DT"
+  }
+}

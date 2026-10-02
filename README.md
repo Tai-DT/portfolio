@@ -1,116 +1,148 @@
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0d1117,100:00d2ff&height=150&section=header&text=⚡%20Kai's%20Portfolio&fontSize=36&fontColor=ffffff&animation=twinkling&fontAlignY=50"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0d1117,100:00d2ff&height=150&section=header&text=⚡%20Tài%20Đỗ%20(Kai)%20•%20taido.dev&fontSize=34&fontColor=ffffff&animation=twinkling&fontAlignY=50"/>
 
-# 🌐 [taifullstack.com](https://taifullstack.com)
+# 🌐 [taido.dev](https://taido.dev)
 
-**A stunning, interactive portfolio built with cutting-edge web technologies**
+**Full-Stack Developer & AI Systems Engineer Portfolio**  
+*Built with Next.js 15, React 19, Hono Web Framework & 100% Cloudflare Native Stack: Pages, Workers, D1 SQL, R2 Storage & Workers AI.*
 
-[![Live Site](https://img.shields.io/badge/🔴_LIVE-taifullstack.com-00d2ff?style=for-the-badge)](https://taifullstack.com)
+[![Live Site](https://img.shields.io/badge/🔴_LIVE-taido.dev-00d2ff?style=for-the-badge)](https://taido.dev)
+[![Hono](https://img.shields.io/badge/Hono_v4-E36002?style=for-the-badge&logo=hono&logoColor=white)](https://hono.dev/)
 [![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Cloudflare](https://img.shields.io/badge/Cloudflare_Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://pages.cloudflare.com/)
+[![Cloudflare D1](https://img.shields.io/badge/Cloudflare_D1-SQL_Database-orange?style=for-the-badge&logo=cloudflare)](https://developers.cloudflare.com/d1/)
+[![Cloudflare R2](https://img.shields.io/badge/Cloudflare_R2-Object_Storage-F38020?style=for-the-badge&logo=cloudflare)](https://developers.cloudflare.com/r2/)
+[![Cloudflare AI](https://img.shields.io/badge/Workers_AI-Llama_3.1-blueviolet?style=for-the-badge&logo=cloudflare)](https://developers.cloudflare.com/workers-ai/)
 
 </div>
 
 ---
 
-## ✨ Features
+## ✨ Features & Cloudflare Native Architecture
 
 | Feature | Description |
 |:-------:|:------------|
-| 🎨 **Dynamic Theming** | Real-time theme changes based on time of day & weather |
-| 🌦️ **Weather Widget** | Live weather integration with visual effects |
-| 🧊 **3D Interactive Scene** | Three.js powered 3D character that reacts to user interaction |
-| 🌌 **Dynamic Background** | Animated particle system with depth & parallax |
-| 📱 **Fully Responsive** | Pixel-perfect on all devices |
-| 🌙 **Dark/Light Mode** | Smooth theme transitions with system preference support |
-| ⚡ **Turbopack** | Lightning-fast development with Next.js 15 Turbopack |
-| 📄 **CV Download** | Professional CV with A4 print-optimized layout |
+| ⚡ **Hono v4 Backend** | Ultra-fast, lightweight web API running at Cloudflare Edge (`/api/*`) |
+| 🤖 **Cloudflare Workers AI** | Built-in **Kai AI Assistant** powered by Meta Llama 3.1 running on Cloudflare GPUs |
+| 🗄️ **Cloudflare D1 Database** | Serverless SQLite SQL database powering the live Guestbook & Contact inquiries |
+| 📦 **Cloudflare R2 Storage** | Zero-egress object storage for serving CV/Resumes and portfolio assets |
+| 🎨 **Dynamic Theming** | 24-hour living color scheme shifting based on time of day and local weather |
+| 🧊 **3D Interactive Scene** | Three.js powered 3D Bumblebee companion tracking section navigation & mouse physics |
+| 📱 **Responsive & Accessible** | Built with Radix UI, Tailwind CSS v4, and mobile-optimized layouts |
+| 🔒 **Custom Domain Ready** | Configured for `taido.dev` on Cloudflare with SSL and global CDN caching |
 
 ---
 
-## 🛠️ Tech Stack
-
-<div align="center">
+## 🛠️ Full-Stack Technology Stack
 
 | Layer | Technologies |
 |:-----:|:-------------|
-| **Framework** | ![Next.js](https://img.shields.io/badge/Next.js_15-000?logo=next.js&logoColor=white) ![React](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=black) |
-| **Language** | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white) |
-| **Styling** | ![TailwindCSS](https://img.shields.io/badge/Tailwind_v4-38B2AC?logo=tailwind-css&logoColor=white) ![Radix UI](https://img.shields.io/badge/Radix_UI-161618?logo=radix-ui&logoColor=white) |
-| **3D/Animation** | ![Three.js](https://img.shields.io/badge/Three.js-000?logo=three.js&logoColor=white) ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?logo=framer&logoColor=white) ![React Spring](https://img.shields.io/badge/React_Spring-27ae60?logoColor=white) |
-| **Deployment** | ![Cloudflare](https://img.shields.io/badge/Cloudflare_Pages-F38020?logo=cloudflare&logoColor=white) |
-| **Components** | ![shadcn/ui](https://img.shields.io/badge/shadcn/ui-000?logoColor=white) ![Lucide](https://img.shields.io/badge/Lucide_Icons-f472b6?logoColor=white) |
-
-</div>
+| **Frontend** | Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS v4, Framer Motion, Radix UI |
+| **Backend Framework** | **Hono v4** mounted on Next.js Edge & Cloudflare Pages Functions |
+| **Database** | **Cloudflare D1** (Serverless Distributed SQL Database) |
+| **Object Storage** | **Cloudflare R2** (`taido-portfolio-assets` for CV and media) |
+| **AI Inference** | **Cloudflare Workers AI** (`@cf/meta/llama-3.1-8b-instruct`) |
+| **3D & Graphics** | Three.js, React Three Fiber (R3F), GLTF Model Loader |
+| **Hosting & DNS** | Cloudflare Pages, Cloudflare Workers, Custom Domain `taido.dev` |
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Local Development
 
 ```bash
 # Clone the repository
 git clone https://github.com/Tai-DT/portfolio.git
 cd portfolio
 
-# Install dependencies
-npm install
+# Install dependencies (handling React 19 peer dependencies)
+npm install --legacy-peer-deps
 
-# Start development server (with Turbopack ⚡)
+# Start development server with Turbopack ⚡
 npm run dev
 
-# Build for production
+# Build and verify for production
 npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the portfolio.
+Open [http://localhost:3000](http://localhost:3000) to view the portfolio locally.
 
 ---
 
-## 📂 Project Structure
+## ☁️ Cloudflare Setup & Deployment (`taido.dev`)
 
-```
-portfolio/
-├── app/                  # Next.js App Router
-│   ├── page.tsx          # Main portfolio page
-│   ├── layout.tsx        # Root layout with providers
-│   └── globals.css       # Global styles & design tokens
-├── components/
-│   ├── 3d/               # Three.js 3D scene components
-│   ├── background/       # Dynamic animated backgrounds
-│   ├── ui/               # shadcn/ui components
-│   └── weather/          # Weather widget
-├── providers/            # Context providers (Time, Weather)
-├── hooks/                # Custom React hooks
-├── lib/                  # Utilities & theme configuration
-├── styles/               # Additional style modules
-└── public/               # Static assets & 3D models
+### Step 1: Login & Initialize Cloudflare Resources
+
+```bash
+# 1. Login to your Cloudflare account
+npx wrangler login
+
+# 2. Create the Cloudflare D1 SQL database
+npm run d1:create
+# Output will display your database_id
+
+# 3. Create the Cloudflare R2 object storage bucket
+npm run r2:create
 ```
 
+*Update `database_id` inside `wrangler.jsonc` if needed.*
+
+### Step 2: Apply D1 Database Migrations
+
+Apply the database schema (`contact_messages`, `guestbook_entries`, `page_views`):
+
+```bash
+# Apply schema to local development D1 (optional)
+npm run d1:migrate:local
+
+# Apply schema to production Cloudflare D1
+npm run d1:migrate
+```
+
+### Step 3: Deploy to Cloudflare Pages & Connect `taido.dev`
+
+#### Option A: Cloudflare Dashboard (Recommended)
+1. Go to **Cloudflare Dashboard** → **Compute (Workers & Pages)** → **Create application** → **Pages** → **Connect to Git**.
+2. Select your repository `Tai-DT/portfolio`.
+3. Configure build settings:
+   - **Framework preset**: `Next.js`
+   - **Build command**: `npm run build`
+   - **Build output directory**: `.next`
+4. In **Settings** → **Functions**:
+   - **D1 Database Bindings**:
+     - Variable name: `DB` → Select `taido-portfolio-db`
+   - **R2 Bucket Bindings**:
+     - Variable name: `R2_BUCKET` → Select `taido-portfolio-assets`
+   - **Workers AI Bindings**:
+     - Variable name: `AI` (Enable Workers AI)
+5. In **Custom domains**:
+   - Click **Set up a custom domain**
+   - Enter `taido.dev` (and `www.taido.dev`)
+   - Cloudflare will automatically provision SSL certificates and update DNS!
+
+#### Option B: Direct CLI Deployment
+```bash
+npm run deploy:cloudflare
+```
+
 ---
 
-## 🎨 Design Philosophy
+## 📡 API Endpoints (Hono Edge)
 
-This portfolio is designed to create a **memorable first impression**:
-
-- **🌈 Living Design**: The entire color scheme shifts based on the time of day — warm sunrise tones in the morning, cool twilight gradients in the evening
-- **🌍 Context-Aware**: Weather data influences visual elements, making each visit unique
-- **🧊 Depth & Dimension**: Three.js renders an interactive 3D companion that responds to cursor movement and scroll position
-- **✨ Micro-interactions**: Every element has subtle hover effects and smooth transitions powered by Framer Motion
-
----
-
-## 📃 License
-
-This project is open source and available under the [MIT License](LICENSE).
+- `GET /api/stats`: Live edge status (D1, R2, Workers AI, edge PoP region, GitHub stats)
+- `GET /api/health`: Healthcheck endpoint
+- `POST /api/contact`: Send inquiry to Cloudflare D1
+- `GET /api/guestbook`: Fetch recent guestbook entries from Cloudflare D1
+- `POST /api/guestbook`: Submit new guestbook entry to Cloudflare D1
+- `POST /api/ai/chat`: Interactive chat powered by **Cloudflare Workers AI (Llama 3.1)**
+- `GET /api/r2/files`: List assets in **Cloudflare R2**
+- `GET /api/r2/file/:key`: Stream asset from **Cloudflare R2** (e.g. CV download)
+- `POST /api/r2/upload`: Upload file to **Cloudflare R2**
 
 ---
 
-<div align="center">
+## 👨‍💻 Developer Profile
 
-**Built with ❤️ by [Kai](https://github.com/Tai-DT)**
-
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,100:00d2ff&height=100&section=footer"/>
-
-</div>
+- **Name**: Tài Đỗ (Kai)
+- **GitHub**: [@Tai-DT](https://github.com/Tai-DT)
+- **Domain**: [taido.dev](https://taido.dev)
+- **Specialization**: Model Context Protocol (MCP), Full-Stack Systems, Native Apple & Mobile Apps
