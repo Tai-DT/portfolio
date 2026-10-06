@@ -1,7 +1,7 @@
 'use client';
 
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Environment, useGLTF } from '@react-three/drei';
+import { Environment, useGLTF, Sparkles } from '@react-three/drei';
 import { Suspense, useState, useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { useSpring } from '@react-spring/three';
@@ -113,6 +113,9 @@ function BumblebeeModel({
         // Add vertical bobbing for excitement
         targetY += Math.sin(time * 1.5) * 0.15;
       }
+
+      // Face the cursor: steer yaw toward pointer (clamped so it never fully turns away)
+      targetRotationY += THREE.MathUtils.clamp(mouse.x * 0.45, -0.55, 0.55);
       
       // Update spring animations for rotation - this makes it very smooth
       rotationY.start({ to: targetRotationY });
@@ -137,12 +140,13 @@ function BumblebeeModel({
     modelRef.current.rotation.y = rotationY.get();
     modelRef.current.rotation.z = rotationZ.get();
     
-    // Subtle reaction to scroll - gentler tilt
+    // Subtle reaction to scroll + cursor tilt
     const scrollFactor = Math.min(scrollY / 800, 0.7);
+    const mouseTilt = isMobile ? 0 : THREE.MathUtils.clamp(-mouse.y * 0.18, -0.22, 0.22);
     modelRef.current.rotation.x = THREE.MathUtils.lerp(
       modelRef.current.rotation.x,
-      scrollFactor * (Math.PI / 20),
-      0.03 // Very slow interpolation for extra smoothness
+      scrollFactor * (Math.PI / 20) + mouseTilt,
+      0.05
     );
   });
 
@@ -152,11 +156,14 @@ function BumblebeeModel({
   
   return (
     <group ref={modelRef}>
-      <primitive 
-        object={scene} 
-        scale={0.015} 
-        position={[0, -1.5, 0]} 
+      <primitive
+        object={scene}
+        scale={0.015}
+        position={[0, -1.5, 0]}
       />
+      {/* Aurora particles orbiting the robot */}
+      <Sparkles count={110} scale={[7, 9, 5]} position={[0, 0.8, 0]} size={2.4} speed={0.35} color="#a78bfa" opacity={0.75} />
+      <Sparkles count={45} scale={[4.5, 6, 3.5]} position={[0, 1.2, 0]} size={3.5} speed={0.6} color="#67e8f9" opacity={0.55} />
     </group>
   );
 }
@@ -394,8 +401,8 @@ export default function ThreeScene({
     position: 'fixed',
     zIndex: 5,
     pointerEvents: 'none',
-    width: screenSize.width < 768 ? '100%' : screenSize.width < 1280 ? '30%' : '40%',
-    height: screenSize.width < 768 ? '300px' : '90vh',
+    width: screenSize.width < 768 ? '100%' : screenSize.width < 1400 ? '32%' : '40%',
+    height: screenSize.width < 768 ? '300px' : screenSize.width < 1400 ? '48vh' : '90vh',
     transition: 'all 2s cubic-bezier(0.16, 1, 0.3, 1)', // Smoother easing curve
     opacity: isTransitioning ? 0.7 : 1, // Fade during transitions
   } as React.CSSProperties;
@@ -404,6 +411,14 @@ export default function ThreeScene({
     // Mobile positioning: bottom of screen with gentler constraints
     containerStyle.bottom = 0;
     containerStyle.left = 0;
+  } else if (screenSize.width < 1400) {
+    // Mid-size screens: park in the bottom-right corner so the robot never
+    // collides with the centered headline/body text (canvas stays decor).
+    containerStyle.top = 'auto';
+    containerStyle.bottom = '-3%';
+    containerStyle.right = '0%';
+    containerStyle.left = 'auto';
+    containerStyle.transform = 'none';
   } else {
     // Desktop positioning - dynamic left/right with more organic transitions
     containerStyle.top = '50%';

@@ -8,6 +8,7 @@ import { LocaleProvider } from "@/providers/LocaleProvider"
 
 import "./globals.css"
 import AuroraBackground from "@/components/background/AuroraBackground"
+import IntroOverlay from "@/components/motion/IntroOverlay"
 import { Toaster } from "@/components/ui/sonner"
 
 // Define fonts
@@ -81,6 +82,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LocaleProvider>
+            {/* Opening intro: logo reveal → curtain lift */}
+            <IntroOverlay />
+
             {/* Animated aurora background layer */}
             <AuroraBackground />
 
