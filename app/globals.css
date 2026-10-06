@@ -2,29 +2,28 @@
 @import "tw-animate-css";
 @import "./utilities.css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark *, [class*="dark-"] *));
 
-@theme {
-  --background: oklch(var(--color-background));
-  --foreground: oklch(var(--color-foreground));
-  --card: oklch(var(--color-card));
-  --card-foreground: oklch(var(--color-card-foreground));
-  --popover: oklch(var(--color-popover));
-  --popover-foreground: oklch(var(--color-popover-foreground));
-  --primary: oklch(var(--color-primary));
-  --primary-foreground: oklch(var(--color-primary-foreground));
-  --secondary: oklch(var(--color-secondary));
-  --secondary-foreground: oklch(var(--color-secondary-foreground));
-  --muted: oklch(var(--color-muted));
-  --muted-foreground: oklch(var(--color-muted-foreground));
-  --accent: oklch(var(--color-accent));
-  --accent-foreground: oklch(var(--color-accent-foreground));
-  --destructive: oklch(var(--color-destructive));
-  --destructive-foreground: oklch(var(--color-destructive-foreground));
-  --border: oklch(var(--color-border));
-  --input: oklch(var(--color-input));
-  --ring: oklch(var(--color-ring));
-  --radius: var(--radius);
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -35,44 +34,56 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
 }
 
-/* Base light theme (noon) */
 :root {
   --radius: 0.625rem;
-  --color-background: 1 0 0;
-  --color-foreground: 0.145 0 0;
-  --color-card: 1 0 0;
-  --color-card-foreground: 0.145 0 0;
-  --color-popover: 1 0 0;
-  --color-popover-foreground: 0.145 0 0;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
 
   /* Base colors for noon (12PM) */
-  --color-primary: 0.205 0 0;
-  --color-primary-foreground: 0.985 0 0;
-  --color-secondary: 0.97 0 0;
-  --color-secondary-foreground: 0.205 0 0;
-  --color-muted: 0.97 0 0;
-  --color-muted-foreground: 0.556 0 0;
-  --color-accent: 0.97 0 0;
-  --color-accent-foreground: 0.205 0 0;
-  --color-destructive: 0.577 0.245 27.325;
-  --color-border: 0.922 0 0;
-  --color-input: 0.922 0 0;
-  --color-ring: 0.708 0 0;
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -90,126 +101,128 @@
 
 /* Light theme variations for each hour (6AM-5PM) */
 .light-6am {
-  --color-background: 0.98 0.02 240; /* Cool dawn blue */
-  --color-card: 0.99 0.01 240;
-  --color-popover: 0.99 0.01 240;
-  --color-primary: 0.205 0.02 30;
-  --color-accent: 0.97 0.02 30;
+  --background: oklch(0.98 0.02 240); /* Cool dawn blue */
+  --card: oklch(0.99 0.01 240);
+  --popover: oklch(0.99 0.01 240);
+  --primary: oklch(0.205 0.02 30);
+  --accent: oklch(0.97 0.02 30);
   --chart-1: oklch(0.646 0.222 30);
 }
 
 .light-7am {
-  --color-background: 0.99 0.03 220; /* Morning sky */
-  --color-card: 0.995 0.015 220;
-  --color-popover: 0.995 0.015 220;
-  --color-primary: 0.205 0.03 45;
-  --color-accent: 0.97 0.03 45;
+  --background: oklch(0.99 0.03 220); /* Morning sky */
+  --card: oklch(0.995 0.015 220);
+  --popover: oklch(0.995 0.015 220);
+  --primary: oklch(0.205 0.03 45);
+  --accent: oklch(0.97 0.03 45);
   --chart-1: oklch(0.646 0.222 45);
 }
 
 .light-8am {
-  --color-background: 0.995 0.02 200; /* Clear morning */
-  --color-card: 0.998 0.01 200;
-  --color-popover: 0.998 0.01 200;
-  --color-primary: 0.205 0.04 60;
-  --color-accent: 0.97 0.04 60;
+  --background: oklch(0.995 0.02 200); /* Clear morning */
+  --card: oklch(0.998 0.01 200);
+  --popover: oklch(0.998 0.01 200);
+  --primary: oklch(0.205 0.04 60);
+  --accent: oklch(0.97 0.04 60);
   --chart-1: oklch(0.646 0.222 60);
 }
 
 .light-9am {
-  --color-background: 0.998 0.01 180; /* Bright morning */
-  --color-card: 0.999 0.005 180;
-  --color-popover: 0.999 0.005 180;
-  --color-primary: 0.205 0.05 75;
-  --color-accent: 0.97 0.05 75;
+  --background: oklch(0.998 0.01 180); /* Bright morning */
+  --card: oklch(0.999 0.005 180);
+  --popover: oklch(0.999 0.005 180);
+  --primary: oklch(0.205 0.05 75);
+  --accent: oklch(0.97 0.05 75);
   --chart-1: oklch(0.646 0.222 75);
 }
 
 .light-10am {
-  --color-background: 0.999 0.005 160; /* Late morning */
-  --color-card: 1 0 160;
-  --color-popover: 1 0 160;
-  --color-primary: 0.205 0.06 90;
-  --color-accent: 0.97 0.06 90;
+  --background: oklch(0.999 0.005 160); /* Late morning */
+  --card: oklch(1 0 160);
+  --popover: oklch(1 0 160);
+  --primary: oklch(0.205 0.06 90);
+  --accent: oklch(0.97 0.06 90);
   --chart-1: oklch(0.646 0.222 90);
 }
 
 .light-11am {
-  --color-background: 0.999 0.005 140; /* Approaching noon */
-  --color-card: 1 0 140;
-  --color-popover: 1 0 140;
-  --color-primary: 0.205 0.07 105;
-  --color-accent: 0.97 0.07 105;
+  --background: oklch(0.999 0.005 140); /* Approaching noon */
+  --card: oklch(1 0 140);
+  --popover: oklch(1 0 140);
+  --primary: oklch(0.205 0.07 105);
+  --accent: oklch(0.97 0.07 105);
   --chart-1: oklch(0.646 0.222 105);
 }
 
 /* 12PM is the default :root theme */
 
 .light-1pm {
-  --color-background: 0.999 0.005 120; /* Early afternoon */
-  --color-card: 1 0 120;
-  --color-popover: 1 0 120;
-  --color-primary: 0.205 0.08 135;
-  --color-accent: 0.97 0.08 135;
+  --background: oklch(0.999 0.005 120); /* Early afternoon */
+  --card: oklch(1 0 120);
+  --popover: oklch(1 0 120);
+  --primary: oklch(0.205 0.08 135);
+  --accent: oklch(0.97 0.08 135);
   --chart-1: oklch(0.646 0.222 135);
 }
 
 .light-2pm {
-  --color-background: 0.999 0.01 100; /* Mid afternoon */
-  --color-card: 0.998 0.005 100;
-  --color-popover: 0.998 0.005 100;
-  --color-primary: 0.205 0.09 150;
-  --color-accent: 0.97 0.09 150;
+  --background: oklch(0.999 0.01 100); /* Mid afternoon */
+  --card: oklch(0.998 0.005 100);
+  --popover: oklch(0.998 0.005 100);
+  --primary: oklch(0.205 0.09 150);
+  --accent: oklch(0.97 0.09 150);
   --chart-1: oklch(0.646 0.222 150);
 }
 
 .light-3pm {
-  --color-background: 0.998 0.015 80; /* Late afternoon */
-  --color-card: 0.997 0.01 80;
-  --color-popover: 0.997 0.01 80;
-  --color-primary: 0.205 0.10 165;
-  --color-accent: 0.97 0.10 165;
+  --background: oklch(0.998 0.015 80); /* Late afternoon */
+  --card: oklch(0.997 0.01 80);
+  --popover: oklch(0.997 0.01 80);
+  --primary: oklch(0.205 0.10 165);
+  --accent: oklch(0.97 0.10 165);
   --chart-1: oklch(0.646 0.222 165);
 }
 
 .light-4pm {
-  --color-background: 0.995 0.02 60; /* Early evening */
-  --color-card: oklch(0.996 0.015 60);
-  --color-popover: oklch(0.996 0.015 60);
-  --color-primary: oklch(0.205 0.11 180);
-  --color-accent: oklch(0.97 0.11 180);
+  --background: oklch(0.995 0.02 60); /* Early evening */
+  --card: oklch(0.996 0.015 60);
+  --popover: oklch(0.996 0.015 60);
+  --primary: oklch(0.205 0.11 180);
+  --accent: oklch(0.97 0.11 180);
   --chart-1: oklch(0.646 0.222 180);
 }
 
 .light-5pm {
-  --color-background: 0.99 0.03 40; /* Sunset glow */
-  --color-card: oklch(0.994 0.02 40);
-  --color-popover: oklch(0.994 0.02 40);
-  --color-primary: oklch(0.205 0.12 195);
-  --color-accent: oklch(0.97 0.12 195);
+  --background: oklch(0.99 0.03 40); /* Sunset glow */
+  --card: oklch(0.994 0.02 40);
+  --popover: oklch(0.994 0.02 40);
+  --primary: oklch(0.205 0.12 195);
+  --accent: oklch(0.97 0.12 195);
   --chart-1: oklch(0.646 0.222 195);
 }
 
 /* Base dark theme (midnight) */
-.dark {
-  --color-background: 0.145 0 0;
-  --color-foreground: 0.985 0 0;
-  --color-card: 0.205 0 0;
-  --color-card-foreground: 0.985 0 0;
-  --color-popover: 0.205 0 0;
-  --color-popover-foreground: 0.985 0 0;
-  --color-primary: 0.922 0 0;
-  --color-primary-foreground: 0.205 0 0;
-  --color-secondary: 0.269 0 0;
-  --color-secondary-foreground: 0.985 0 0;
-  --color-muted: 0.269 0 0;
-  --color-muted-foreground: 0.708 0 0;
-  --color-accent: 0.269 0 0;
-  --color-accent-foreground: 0.985 0 0;
-  --color-destructive: 0.704 0.191 22.216;
-  --color-border: 1 0 0 / 10%;
-  --color-input: 1 0 0 / 15%;
-  --color-ring: 0.556 0 0;
+.dark,
+[class^="dark-"],
+[class*=" dark-"] {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -227,105 +240,106 @@
 
 /* Dark theme variations (6PM-5AM) */
 .dark-6pm {
-  --color-background: 0.2 0.03 260; /* Twilight */
-  --color-card: 0.25 0.02 260;
-  --color-popover: 0.25 0.02 260;
-  --color-primary: 0.922 0.02 210;
-  --color-accent: 0.269 0.02 210;
+  --background: oklch(0.2 0.03 260); /* Twilight */
+  --card: oklch(0.25 0.02 260);
+  --popover: oklch(0.25 0.02 260);
+  --primary: oklch(0.922 0.02 210);
+  --accent: oklch(0.269 0.02 210);
   --chart-1: oklch(0.488 0.243 210);
 }
 
 .dark-7pm {
-  --color-background: 0.18 0.04 270; /* Early evening */
-  --color-card: 0.23 0.03 270;
-  --color-popover: 0.23 0.03 270;
-  --color-primary: 0.922 0.03 225;
-  --color-accent: 0.269 0.03 225;
+  --background: oklch(0.18 0.04 270); /* Early evening */
+  --card: oklch(0.23 0.03 270);
+  --popover: oklch(0.23 0.03 270);
+  --primary: oklch(0.922 0.03 225);
+  --accent: oklch(0.269 0.03 225);
   --chart-1: oklch(0.488 0.243 225);
 }
 
 .dark-8pm {
-  --color-background: 0.17 0.05 280; /* Evening */
-  --color-card: 0.22 0.04 280;
-  --color-popover: 0.22 0.04 280;
-  --color-primary: 0.922 0.04 240;
-  --color-accent: 0.269 0.04 240;
+  --background: oklch(0.17 0.05 280); /* Evening */
+  --card: oklch(0.22 0.04 280);
+  --popover: oklch(0.22 0.04 280);
+  --primary: oklch(0.922 0.04 240);
+  --accent: oklch(0.269 0.04 240);
   --chart-1: oklch(0.488 0.243 240);
 }
 
 .dark-9pm {
-  --color-background: 0.16 0.04 290; /* Late evening */
-  --color-card: 0.21 0.03 290;
-  --color-popover: 0.21 0.03 290;
-  --color-primary: 0.922 0.05 255;
-  --color-accent: 0.269 0.05 255;
+  --background: oklch(0.16 0.04 290); /* Late evening */
+  --card: oklch(0.21 0.03 290);
+  --popover: oklch(0.21 0.03 290);
+  --primary: oklch(0.922 0.05 255);
+  --accent: oklch(0.269 0.05 255);
   --chart-1: oklch(0.488 0.243 255);
 }
 
 .dark-10pm {
-  --color-background: 0.15 0.03 300; /* Night setting in */
-  --color-card: 0.2 0.02 300;
-  --color-popover: 0.2 0.02 300;
-  --color-primary: 0.922 0.06 270;
-  --color-accent: 0.269 0.06 270;
+  --background: oklch(0.15 0.03 300); /* Night setting in */
+  --card: oklch(0.2 0.02 300);
+  --popover: oklch(0.2 0.02 300);
+  --primary: oklch(0.922 0.06 270);
+  --accent: oklch(0.269 0.06 270);
   --chart-1: oklch(0.488 0.243 270);
 }
 
 .dark-11pm {
-  --color-background: 0.14 0.02 310; /* Late night */
-  --color-card: 0.19 0.01 310;
-  --color-popover: 0.19 0.01 310;
-  --color-primary: 0.922 0.07 285;
-  --color-accent: 0.269 0.07 285;
+  --background: oklch(0.14 0.02 310); /* Late night */
+  --card: oklch(0.19 0.01 310);
+  --popover: oklch(0.19 0.01 310);
+  --primary: oklch(0.922 0.07 285);
+  --accent: oklch(0.269 0.07 285);
   --chart-1: oklch(0.488 0.243 285);
 }
 
 /* 12AM is the default .dark theme */
 
 .dark-1am {
-  --color-background: 0.13 0.01 320; /* Deep night */
-  --color-card: 0.18 0.01 320;
-  --color-popover: 0.18 0.01 320;
-  --color-primary: 0.922 0.08 315;
-  --color-accent: 0.269 0.08 315;
+  --background: oklch(0.13 0.01 320); /* Deep night */
+  --card: oklch(0.18 0.01 320);
+  --popover: oklch(0.18 0.01 320);
+  --primary: oklch(0.922 0.08 315);
+  --accent: oklch(0.269 0.08 315);
   --chart-1: oklch(0.488 0.243 315);
 }
 
 .dark-2am {
-  --color-background: 0.13 0.01 330; /* Middle of night */
-  --color-card: 0.18 0.01 330;
-  --color-popover: 0.18 0.01 330;
-  --color-primary: 0.922 0.09 330;
-  --color-accent: 0.269 0.09 330;
+  --background: oklch(0.13 0.01 330); /* Middle of night */
+  --card: oklch(0.18 0.01 330);
+  --popover: oklch(0.18 0.01 330);
+  --primary: oklch(0.922 0.09 330);
+  --accent: oklch(0.269 0.09 330);
   --chart-1: oklch(0.488 0.243 330);
 }
 
 .dark-3am {
-  --color-background: 0.13 0.01 340; /* Late night */
-  --color-card: 0.18 0.01 340;
-  --color-popover: 0.18 0.01 340;
-  --color-primary: 0.922 0.10 345;
-  --color-accent: 0.269 0.10 345;
+  --background: oklch(0.13 0.01 340); /* Late night */
+  --card: oklch(0.18 0.01 340);
+  --popover: oklch(0.18 0.01 340);
+  --primary: oklch(0.922 0.10 345);
+  --accent: oklch(0.269 0.10 345);
   --chart-1: oklch(0.488 0.243 345);
 }
 
 .dark-4am {
-  --color-background: 0.14 0.01 350; /* Early morning darkness */
-  --color-card: 0.19 0.01 350;
-  --color-popover: 0.19 0.01 350;
-  --color-primary: 0.922 0.11 360;
-  --color-accent: 0.269 0.11 360;
+  --background: oklch(0.14 0.01 350); /* Early morning darkness */
+  --card: oklch(0.19 0.01 350);
+  --popover: oklch(0.19 0.01 350);
+  --primary: oklch(0.922 0.11 360);
+  --accent: oklch(0.269 0.11 360);
   --chart-1: oklch(0.488 0.243 360);
 }
 
 .dark-5am {
-  --color-background: 0.15 0.02 10; /* Pre-dawn */
-  --color-card: 0.2 0.02 10;
-  --color-popover: 0.2 0.02 10;
-  --color-primary: 0.922 0.12 15;
-  --color-accent: 0.269 0.12 15;
+  --background: oklch(0.15 0.02 10); /* Pre-dawn */
+  --card: oklch(0.2 0.02 10);
+  --popover: oklch(0.2 0.02 10);
+  --primary: oklch(0.922 0.12 15);
+  --accent: oklch(0.269 0.12 15);
   --chart-1: oklch(0.488 0.243 15);
 }
+
 
 /* Add animations for sky effects */
 @keyframes twinkle {
@@ -410,760 +424,11 @@
 
 @layer base {
   * {
-    @apply border-[--border] outline-[--ring]/50;
+    border-color: var(--border);
+    outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
   }
   body {
-    @apply bg-[--background] text-[--foreground];
-  }
-}
-
-/* Core theme base - neutral tone */
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 142.1 76.2% 36.3%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 142.1 76.2% 36.3%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-  }
-
-  /* Late night (Midnight) - default dark theme */
-  .night {
-    --background: 222 47% 5%;
-    --foreground: 0 0% 95%;
-    --card: 224 40% 8%;
-    --card-foreground: 0 0% 95%;
-    --popover: 224 40% 8%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 222 35% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 222 40% 15%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 217 30% 20%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 70% 30%;
-    --destructive-foreground: 0 85% 97%;
-    --border: 222 35% 20%;
-    --input: 222 35% 20%;
-    --ring: 217 91% 60%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 260 60% 50%;
-    --chart-3: 280 50% 60%;
-    --chart-4: 300 55% 65%;
-    --chart-5: 330 60% 65%;
-  }
-
-  /* 1 AM - Deep night */
-  .dark-1am {
-    --background: 232 47% 5%;
-    --foreground: 0 0% 95%;
-    --card: 234 40% 8%;
-    --card-foreground: 0 0% 95%;
-    --popover: 234 40% 8%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 227 91% 60%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 232 35% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 232 40% 15%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 227 30% 20%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 70% 30%;
-    --destructive-foreground: 0 85% 97%;
-    --border: 232 35% 20%;
-    --input: 232 35% 20%;
-    --ring: 227 91% 60%;
-    --chart-1: 225 70% 50%;
-    --chart-2: 265 60% 50%;
-    --chart-3: 285 50% 60%;
-    --chart-4: 305 55% 65%;
-    --chart-5: 335 60% 65%;
-  }
-
-  /* 2 AM - Deep night */
-  .dark-2am {
-    --background: 242 47% 5%;
-    --foreground: 0 0% 95%;
-    --card: 244 40% 8%;
-    --card-foreground: 0 0% 95%;
-    --popover: 244 40% 8%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 237 91% 60%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 242 35% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 242 40% 15%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 237 30% 20%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 70% 30%;
-    --destructive-foreground: 0 85% 97%;
-    --border: 242 35% 20%;
-    --input: 242 35% 20%;
-    --ring: 237 91% 60%;
-    --chart-1: 235 70% 50%;
-    --chart-2: 275 60% 50%;
-    --chart-3: 295 50% 60%;
-    --chart-4: 315 55% 65%;
-    --chart-5: 345 60% 65%;
-  }
-
-  /* 3 AM - Deep night */
-  .dark-3am {
-    --background: 252 47% 5%;
-    --foreground: 0 0% 95%;
-    --card: 254 40% 8%;
-    --card-foreground: 0 0% 95%;
-    --popover: 254 40% 8%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 247 91% 60%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 252 35% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 252 40% 15%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 247 30% 20%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 70% 30%;
-    --destructive-foreground: 0 85% 97%;
-    --border: 252 35% 20%;
-    --input: 252 35% 20%;
-    --ring: 247 91% 60%;
-    --chart-1: 245 70% 50%;
-    --chart-2: 285 60% 50%;
-    --chart-3: 305 50% 60%;
-    --chart-4: 325 55% 65%;
-    --chart-5: 355 60% 65%;
-  }
-
-  /* 4 AM - Late night */
-  .dark-4am {
-    --background: 262 47% 5%;
-    --foreground: 0 0% 95%;
-    --card: 264 40% 8%;
-    --card-foreground: 0 0% 95%;
-    --popover: 264 40% 8%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 257 91% 60%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 262 35% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 262 40% 15%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 257 30% 20%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 70% 30%;
-    --destructive-foreground: 0 85% 97%;
-    --border: 262 35% 20%;
-    --input: 262 35% 20%;
-    --ring: 257 91% 60%;
-    --chart-1: 255 70% 50%;
-    --chart-2: 295 60% 50%;
-    --chart-3: 315 50% 60%;
-    --chart-4: 335 55% 65%;
-    --chart-5: 5 60% 65%;
-  }
-
-  /* 5 AM - Pre-dawn */
-  .dawn {
-    --background: 272 47% 6%;
-    --foreground: 0 0% 95%;
-    --card: 274 40% 9%;
-    --card-foreground: 0 0% 95%;
-    --popover: 274 40% 9%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 325 80% 65%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 272 35% 16%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 272 40% 16%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 325 25% 22%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 70% 30%;
-    --destructive-foreground: 0 85% 97%;
-    --border: 272 35% 21%;
-    --input: 272 35% 21%;
-    --ring: 325 80% 65%;
-    --chart-1: 325 70% 65%;
-    --chart-2: 300 65% 60%;
-    --chart-3: 275 60% 55%;
-    --chart-4: 350 65% 70%;
-    --chart-5: 15 70% 65%;
-  }
-
-  /* 6 AM - Dawn */
-  .morning {
-    --background: 282 35% 9%;
-    --foreground: 0 0% 95%;
-    --card: 284 30% 12%;
-    --card-foreground: 0 0% 95%;
-    --popover: 284 30% 12%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 25 95% 65%;
-    --primary-foreground: 25 10% 10%;
-    --secondary: 282 25% 20%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 282 30% 20%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 25 40% 25%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 70% 35%;
-    --destructive-foreground: 0 85% 97%;
-    --border: 282 25% 25%;
-    --input: 282 25% 25%;
-    --ring: 25 95% 65%;
-    --chart-1: 25 90% 65%;
-    --chart-2: 45 85% 60%;
-    --chart-3: 65 80% 55%;
-    --chart-4: 15 90% 70%;
-    --chart-5: 35 85% 75%;
-  }
-
-  /* 7 AM - Early Morning */
-  .light-7am {
-    --background: 210 50% 93%;
-    --foreground: 210 50% 10%;
-    --card: 210 30% 96%;
-    --card-foreground: 210 50% 10%;
-    --popover: 210 30% 96%;
-    --popover-foreground: 210 50% 10%;
-    --primary: 35 95% 60%;
-    --primary-foreground: 35 10% 10%;
-    --secondary: 210 20% 85%;
-    --secondary-foreground: 210 50% 15%;
-    --muted: 210 40% 90%;
-    --muted-foreground: 210 40% 40%;
-    --accent: 35 30% 80%;
-    --accent-foreground: 35 50% 15%;
-    --destructive: 0 70% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 210 30% 80%;
-    --input: 210 30% 80%;
-    --ring: 35 95% 60%;
-    --chart-1: 35 90% 60%;
-    --chart-2: 55 85% 55%;
-    --chart-3: 75 80% 50%;
-    --chart-4: 25 90% 65%;
-    --chart-5: 45 85% 70%;
-  }
-
-  /* 8 AM - Morning */
-  .light-8am {
-    --background: 210 50% 95%;
-    --foreground: 210 50% 8%;
-    --card: 210 30% 98%;
-    --card-foreground: 210 50% 8%;
-    --popover: 210 30% 98%;
-    --popover-foreground: 210 50% 8%;
-    --primary: 45 95% 55%;
-    --primary-foreground: 45 10% 10%;
-    --secondary: 210 15% 88%;
-    --secondary-foreground: 210 50% 12%;
-    --muted: 210 35% 92%;
-    --muted-foreground: 210 35% 38%;
-    --accent: 45 25% 83%;
-    --accent-foreground: 45 50% 12%;
-    --destructive: 0 75% 55%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 210 30% 83%;
-    --input: 210 30% 83%;
-    --ring: 45 95% 55%;
-    --chart-1: 45 90% 55%;
-    --chart-2: 65 85% 50%;
-    --chart-3: 85 80% 45%;
-    --chart-4: 35 90% 60%;
-    --chart-5: 55 85% 65%;
-  }
-
-  /* 9 AM - Bright Morning */
-  .light-9am {
-    --background: 210 50% 97%;
-    --foreground: 210 50% 6%;
-    --card: 210 20% 99%;
-    --card-foreground: 210 50% 6%;
-    --popover: 210 20% 99%;
-    --popover-foreground: 210 50% 6%;
-    --primary: 200 85% 45%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 210 10% 90%;
-    --secondary-foreground: 210 50% 10%;
-    --muted: 210 30% 94%;
-    --muted-foreground: 210 30% 36%;
-    --accent: 200 25% 85%;
-    --accent-foreground: 200 50% 10%;
-    --destructive: 0 80% 50%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 210 30% 86%;
-    --input: 210 30% 86%;
-    --ring: 200 85% 45%;
-    --chart-1: 200 80% 45%;
-    --chart-2: 180 75% 40%;
-    --chart-3: 160 70% 35%;
-    --chart-4: 220 75% 50%;
-    --chart-5: 190 70% 55%;
-  }
-
-  /* 10 AM - Late Morning */
-  .day {
-    --background: 210 50% 98%;
-    --foreground: 210 50% 5%;
-    --card: 210 15% 99%;
-    --card-foreground: 210 50% 5%;
-    --popover: 210 15% 99%;
-    --popover-foreground: 210 50% 5%;
-    --primary: 190 80% 40%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 210 8% 92%;
-    --secondary-foreground: 210 50% 8%;
-    --muted: 210 25% 95%;
-    --muted-foreground: 210 25% 35%;
-    --accent: 190 20% 87%;
-    --accent-foreground: 190 50% 8%;
-    --destructive: 0 85% 48%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 210 30% 88%;
-    --input: 210 30% 88%;
-    --ring: 190 80% 40%;
-    --chart-1: 190 75% 40%;
-    --chart-2: 170 70% 35%;
-    --chart-3: 150 65% 30%;
-    --chart-4: 210 70% 45%;
-    --chart-5: 180 65% 50%;
-  }
-
-  /* 11 AM - Near Noon */
-  .light-11am {
-    --background: 210 35% 99%;
-    --foreground: 210 50% 4%;
-    --card: 210 10% 99%;
-    --card-foreground: 210 50% 4%;
-    --popover: 210 10% 99%;
-    --popover-foreground: 210 50% 4%;
-    --primary: 180 75% 38%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 210 5% 93%;
-    --secondary-foreground: 210 50% 7%;
-    --muted: 210 20% 96%;
-    --muted-foreground: 210 20% 34%;
-    --accent: 180 18% 88%;
-    --accent-foreground: 180 50% 7%;
-    --destructive: 0 90% 45%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 210 25% 90%;
-    --input: 210 25% 90%;
-    --ring: 180 75% 38%;
-    --chart-1: 180 70% 38%;
-    --chart-2: 160 65% 33%;
-    --chart-3: 140 60% 28%;
-    --chart-4: 200 65% 43%;
-    --chart-5: 170 60% 48%;
-  }
-
-  /* 12 PM - Noon */
-  .light {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3%;
-    --primary: 170 75% 35%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 5%;
-    --muted: 0 0% 97%;
-    --muted-foreground: 0 0% 35%;
-    --accent: 170 15% 90%;
-    --accent-foreground: 170 50% 5%;
-    --destructive: 0 95% 42%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 92%;
-    --input: 0 0% 92%;
-    --ring: 170 75% 35%;
-    --chart-1: 170 70% 35%;
-    --chart-2: 150 65% 30%;
-    --chart-3: 130 60% 25%;
-    --chart-4: 190 65% 40%;
-    --chart-5: 160 60% 45%;
-  }
-
-  /* 1 PM - Early Afternoon */
-  .light-1pm {
-    --background: 200 35% 99%;
-    --foreground: 200 50% 4%;
-    --card: 200 10% 99%;
-    --card-foreground: 200 50% 4%;
-    --popover: 200 10% 99%;
-    --popover-foreground: 200 50% 4%;
-    --primary: 160 70% 35%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 200 5% 93%;
-    --secondary-foreground: 200 50% 7%;
-    --muted: 200 20% 96%;
-    --muted-foreground: 200 20% 34%;
-    --accent: 160 15% 88%;
-    --accent-foreground: 160 50% 7%;
-    --destructive: 0 90% 45%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 200 25% 90%;
-    --input: 200 25% 90%;
-    --ring: 160 70% 35%;
-    --chart-1: 160 65% 35%;
-    --chart-2: 140 60% 30%;
-    --chart-3: 120 55% 25%;
-    --chart-4: 180 60% 40%;
-    --chart-5: 150 55% 45%;
-  }
-
-  /* 2 PM - Afternoon */
-  .light-2pm {
-    --background: 190 35% 99%;
-    --foreground: 190 50% 4%;
-    --card: 190 10% 99%;
-    --card-foreground: 190 50% 4%;
-    --popover: 190 10% 99%;
-    --popover-foreground: 190 50% 4%;
-    --primary: 150 65% 38%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 190 5% 93%;
-    --secondary-foreground: 190 50% 7%;
-    --muted: 190 20% 96%;
-    --muted-foreground: 190 20% 34%;
-    --accent: 150 15% 88%;
-    --accent-foreground: 150 50% 7%;
-    --destructive: 0 90% 45%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 190 25% 90%;
-    --input: 190 25% 90%;
-    --ring: 150 65% 38%;
-    --chart-1: 150 60% 38%;
-    --chart-2: 130 55% 33%;
-    --chart-3: 110 50% 28%;
-    --chart-4: 170 55% 43%;
-    --chart-5: 140 50% 48%;
-  }
-
-  /* 3 PM - Mid Afternoon */
-  .light-3pm {
-    --background: 180 35% 99%;
-    --foreground: 180 50% 4%;
-    --card: 180 10% 99%;
-    --card-foreground: 180 50% 4%;
-    --popover: 180 10% 99%;
-    --popover-foreground: 180 50% 4%;
-    --primary: 140 65% 40%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 180 5% 93%;
-    --secondary-foreground: 180 50% 7%;
-    --muted: 180 20% 96%;
-    --muted-foreground: 180 20% 34%;
-    --accent: 140 15% 88%;
-    --accent-foreground: 140 50% 7%;
-    --destructive: 0 90% 45%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 180 25% 90%;
-    --input: 180 25% 90%;
-    --ring: 140 65% 40%;
-    --chart-1: 140 60% 40%;
-    --chart-2: 120 55% 35%;
-    --chart-3: 100 50% 30%;
-    --chart-4: 160 55% 45%;
-    --chart-5: 130 50% 50%;
-  }
-
-  /* 4 PM - Late Afternoon */
-  .afternoon {
-    --background: 170 35% 99%;
-    --foreground: 170 50% 4%;
-    --card: 170 10% 99%;
-    --card-foreground: 170 50% 4%;
-    --popover: 170 10% 99%;
-    --popover-foreground: 170 50% 4%;
-    --primary: 130 60% 42%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 170 5% 93%;
-    --secondary-foreground: 170 50% 7%;
-    --muted: 170 20% 96%;
-    --muted-foreground: 170 20% 34%;
-    --accent: 130 15% 88%;
-    --accent-foreground: 130 50% 7%;
-    --destructive: 0 90% 45%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 170 25% 90%;
-    --input: 170 25% 90%;
-    --ring: 130 60% 42%;
-    --chart-1: 130 55% 42%;
-    --chart-2: 110 50% 37%;
-    --chart-3: 90 45% 32%;
-    --chart-4: 150 50% 47%;
-    --chart-5: 120 45% 52%;
-  }
-
-  /* 5 PM - Early Evening */
-  .light-5pm {
-    --background: 160 35% 98%;
-    --foreground: 160 50% 5%;
-    --card: 160 15% 99%;
-    --card-foreground: 160 50% 5%;
-    --popover: 160 15% 99%;
-    --popover-foreground: 160 50% 5%;
-    --primary: 120 60% 40%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 160 8% 92%;
-    --secondary-foreground: 160 50% 8%;
-    --muted: 160 25% 95%;
-    --muted-foreground: 160 25% 35%;
-    --accent: 120 20% 87%;
-    --accent-foreground: 120 50% 8%;
-    --destructive: 0 85% 48%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 160 30% 88%;
-    --input: 160 30% 88%;
-    --ring: 120 60% 40%;
-    --chart-1: 120 55% 40%;
-    --chart-2: 100 50% 35%;
-    --chart-3: 80 45% 30%;
-    --chart-4: 140 50% 45%;
-    --chart-5: 110 45% 50%;
-  }
-
-  /* 6 PM - Sunset */
-  .sunset {
-    --background: 30 50% 96%;
-    --foreground: 30 50% 8%;
-    --card: 30 30% 98%;
-    --card-foreground: 30 50% 8%;
-    --popover: 30 30% 98%;
-    --popover-foreground: 30 50% 8%;
-    --primary: 30 95% 60%;
-    --primary-foreground: 30 10% 10%;
-    --secondary: 30 20% 90%;
-    --secondary-foreground: 30 50% 12%;
-    --muted: 30 40% 93%;
-    --muted-foreground: 30 40% 38%;
-    --accent: 30 30% 85%;
-    --accent-foreground: 30 50% 12%;
-    --destructive: 0 70% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 30 30% 85%;
-    --input: 30 30% 85%;
-    --ring: 30 95% 60%;
-    --chart-1: 30 90% 60%;
-    --chart-2: 50 85% 55%;
-    --chart-3: 70 80% 50%;
-    --chart-4: 20 90% 65%;
-    --chart-5: 40 85% 70%;
-  }
-
-  /* 7 PM - Early Evening */
-  .dark-7pm {
-    --background: 20 50% 12%;
-    --foreground: 0 0% 95%;
-    --card: 20 40% 15%;
-    --card-foreground: 0 0% 95%;
-    --popover: 20 40% 15%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 20 90% 55%;
-    --primary-foreground: 20 10% 10%;
-    --secondary: 20 35% 22%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 20 40% 22%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 20 40% 25%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 70% 35%;
-    --destructive-foreground: 0 85% 97%;
-    --border: 20 35% 25%;
-    --input: 20 35% 25%;
-    --ring: 20 90% 55%;
-    --chart-1: 20 85% 55%;
-    --chart-2: 40 80% 50%;
-    --chart-3: 60 75% 45%;
-    --chart-4: 10 85% 60%;
-    --chart-5: 30 80% 65%;
-  }
-
-  /* 8 PM - Dusk */
-  .dark-8pm {
-    --background: 250 40% 10%;
-    --foreground: 0 0% 95%;
-    --card: 250 35% 13%;
-    --card-foreground: 0 0% 95%;
-    --popover: 250 35% 13%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 280 85% 65%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 250 30% 18%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 250 35% 18%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 280 30% 20%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 70% 35%;
-    --destructive-foreground: 0 85% 97%;
-    --border: 250 30% 22%;
-    --input: 250 30% 22%;
-    --ring: 280 85% 65%;
-    --chart-1: 280 80% 65%;
-    --chart-2: 260 75% 60%;
-    --chart-3: 240 70% 55%;
-    --chart-4: 300 75% 70%;
-    --chart-5: 320 70% 75%;
-  }
-
-  /* 9 PM - Evening */
-  .evening {
-    --background: 260 45% 8%;
-    --foreground: 0 0% 95%;
-    --card: 260 40% 11%;
-    --card-foreground: 0 0% 95%;
-    --popover: 260 40% 11%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 270 85% 65%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 260 35% 16%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 260 40% 16%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 270 30% 20%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 70% 33%;
-    --destructive-foreground: 0 85% 97%;
-    --border: 260 35% 20%;
-    --input: 260 35% 20%;
-    --ring: 270 85% 65%;
-    --chart-1: 270 80% 65%;
-    --chart-2: 250 75% 60%;
-    --chart-3: 230 70% 55%;
-    --chart-4: 290 75% 70%;
-    --chart-5: 310 70% 75%;
-  }
-
-  /* 10 PM - Night */
-  .dark-10pm {
-    --background: 240 47% 7%;
-    --foreground: 0 0% 95%;
-    --card: 240 40% 10%;
-    --card-foreground: 0 0% 95%;
-    --popover: 240 40% 10%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 250 91% 60%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 35% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 40% 15%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 250 30% 20%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 70% 30%;
-    --destructive-foreground: 0 85% 97%;
-    --border: 240 35% 19%;
-    --input: 240 35% 19%;
-    --ring: 250 91% 60%;
-    --chart-1: 250 70% 60%;
-    --chart-2: 230 65% 55%;
-    --chart-3: 210 60% 50%;
-    --chart-4: 270 65% 65%;
-    --chart-5: 290 60% 70%;
-  }
-
-  /* 11 PM - Late Night */
-  .dark-11pm {
-    --background: 230 47% 6%;
-    --foreground: 0 0% 95%;
-    --card: 230 40% 9%;
-    --card-foreground: 0 0% 95%;
-    --popover: 230 40% 9%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 235 91% 60%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 230 35% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 230 40% 15%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 235 30% 20%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 70% 30%;
-    --destructive-foreground: 0 85% 97%;
-    --border: 230 35% 19%;
-    --input: 230 35% 19%;
-    --ring: 235 91% 60%;
-    --chart-1: 235 70% 60%;
-    --chart-2: 215 65% 55%;
-    --chart-3: 195 60% 50%;
-    --chart-4: 255 65% 65%;
-    --chart-5: 275 60% 70%;
-  }
-
-  /* Base styles to inherit CSS variables */
-  * {
-    @apply border-[--border] outline-[--ring]/50;
-  }
-  body {
-    @apply bg-[--background] text-[--foreground];
-  }
-}
-
-@theme inline {
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
-}
-
-@layer base {
-  * {
-    @apply border-[--border] outline-[--ring]/50;
-  }
-  body {
-    @apply bg-[--background] text-[--foreground];
+    background-color: var(--background);
+    color: var(--foreground);
   }
 }

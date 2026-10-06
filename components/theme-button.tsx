@@ -27,8 +27,8 @@ export function ModeToggle({ className }: { className?: string }) {
     >
       {!isMounted ? (
         // Loading placeholder with same dimensions as Clock
-        <div className="h-12 w-36 flex items-center justify-center bg-gray-800/50 backdrop-blur-sm rounded-full">
-          <div className="animate-pulse text-gray-400 text-sm">Loading...</div>
+        <div className="h-12 w-36 flex items-center justify-center bg-muted/60 backdrop-blur-sm rounded-full border border-border">
+          <div className="animate-pulse text-muted-foreground text-sm">...</div>
         </div>
       ) : (
         // Actual clock with consistent positioning

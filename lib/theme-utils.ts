@@ -70,58 +70,13 @@ export function getTimeOfDayDescription(hour: number): string {
 }
 
 // Xác định theme dựa trên giờ hiện tại
-export function getHourBasedTheme(hour: number, useExactTheme: boolean = false): string {
-  if (useExactTheme) {
-    return getExactThemeByHour(hour);
-  }
-  
-  // Existing implementation for general time periods
-  if (hour >= 5 && hour < 7) {
-    return 'dawn';
-  } else if (hour >= 7 && hour < 10) {
-    return 'morning';
-  } else if (hour >= 10 && hour < 16) {
-    return 'day';
-  } else if (hour >= 16 && hour < 18) {
-    return 'afternoon';
-  } else if (hour >= 18 && hour < 20) {
-    return 'sunset';
-  } else if (hour >= 20 && hour < 23) {
-    return 'evening';
-  } else {
-    return 'night';
-  }
+export function getHourBasedTheme(hour: number): string {
+  return getThemeByHour(hour)
 }
 
-// Map hour to exact theme class
+// Map hour to theme class (matches globals.css: light, light-Nam/pm, dark, dark-Nam/pm)
 export function getExactThemeByHour(hour: number): string {
-  switch(hour) {
-    case 0: return "night";    // Midnight
-    case 1: return "dark-1am";
-    case 2: return "dark-2am";
-    case 3: return "dark-3am";
-    case 4: return "dark-4am";
-    case 5: return "dawn";     // Dawn
-    case 6: return "morning";  // Morning
-    case 7: return "light-7am";
-    case 8: return "light-8am";
-    case 9: return "light-9am";
-    case 10: return "day";     // Day
-    case 11: return "light-11am";
-    case 12: return "light";   // Noon
-    case 13: return "light-1pm";
-    case 14: return "light-2pm";
-    case 15: return "light-3pm";
-    case 16: return "afternoon";  // Afternoon
-    case 17: return "light-5pm";
-    case 18: return "sunset";  // Sunset
-    case 19: return "dark-7pm";
-    case 20: return "dark-8pm";
-    case 21: return "evening"; // Evening
-    case 22: return "dark-10pm";
-    case 23: return "dark-11pm";
-    default: return "light";   // Fallback to noon
-  }
+  return getThemeByHour(hour)
 }
 
 // Lấy màu chữ tương phản dựa trên màu nền

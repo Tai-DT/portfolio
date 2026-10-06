@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TimeProvider } from "@/providers/TimeProvider"
 import { WeatherProvider } from "@/providers/WeatherProvider"
+import { LocaleProvider } from "@/providers/LocaleProvider"
 
 import "./globals.css"
 import { getCurrentHourTheme } from "@/lib/theme-utils"
@@ -108,18 +109,20 @@ export default function RootLayout({
         >
           <TimeProvider>
             <WeatherProvider>
-              {/* Background layer */}
-              <ShadcnThemeController />
-              <DynamicBackground />
-              
-              {/* Content layer */}
-              <div className="relative z-10">
-                {children}
-              </div>
-              
-              {/* UI overlay layer */}
-              <WeatherWidget />
-              <Toaster richColors position="top-right" />
+              <LocaleProvider>
+                {/* Background layer */}
+                <ShadcnThemeController />
+                <DynamicBackground />
+                
+                {/* Content layer */}
+                <div className="relative z-10">
+                  {children}
+                </div>
+                
+                {/* UI overlay layer */}
+                <WeatherWidget />
+                <Toaster richColors position="top-right" />
+              </LocaleProvider>
             </WeatherProvider>
           </TimeProvider>
         </ThemeProvider>

@@ -315,7 +315,8 @@ export default function WeatherEffects({
       }
       
       // Create falling autumn leaves with time-appropriate colors
-      const leaves = Array.from({ length: particleCount }).map((_, i) => {
+      const leafCount = isBackground ? Math.ceil(particleCount * 0.35) : particleCount;
+      const leaves = Array.from({ length: leafCount }).map((_, i) => {
         const size = pseudoRandom(5, 20, i);
         const duration = (pseudoRandom(10, 18, i + 100) / leafSpeed);
         const delay = pseudoRandom(0, 5, i + 200);
@@ -350,7 +351,7 @@ export default function WeatherEffects({
               height: `${size}px`,
               left: `${positionX}%`,
               top: '-20px',
-              opacity: isBackground ? leafOpacity * 0.8 : leafOpacity,
+              opacity: isBackground ? leafOpacity * 0.45 : leafOpacity,
               zIndex: isBackground ? 0 : 10
             }}
             animate={{

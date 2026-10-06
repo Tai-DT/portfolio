@@ -392,9 +392,9 @@ export default function ThreeScene({
   // Enhanced placement with smoother transitions
   const containerStyle = {
     position: 'fixed',
-    zIndex: activeSection === 'hero' ? 20 : 10,
+    zIndex: 5,
     pointerEvents: 'none',
-    width: screenSize.width < 768 ? '100%' : '40%',
+    width: screenSize.width < 768 ? '100%' : screenSize.width < 1280 ? '30%' : '40%',
     height: screenSize.width < 768 ? '300px' : '90vh',
     transition: 'all 2s cubic-bezier(0.16, 1, 0.3, 1)', // Smoother easing curve
     opacity: isTransitioning ? 0.7 : 1, // Fade during transitions

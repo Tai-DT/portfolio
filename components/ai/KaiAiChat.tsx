@@ -4,26 +4,20 @@ import { useState, useRef, useEffect, FormEvent } from 'react';
 import { FaRobot, FaPaperPlane, FaTimes } from 'react-icons/fa';
 import { Sparkles, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useI18n } from '@/providers/LocaleProvider';
 
 interface Message {
   role: 'user' | 'assistant';
   content: string;
 }
 
-const QUICK_PROMPTS = [
-  'Dự án nổi bật nhất của Tài?',
-  'Tài làm gì với Model Context Protocol (MCP)?',
-  'Kiến trúc Cloudflare D1 & R2 của trang này?',
-  'Cách liên hệ phỏng vấn hoặc hợp tác?',
-];
-
 export default function KaiAiChat() {
+  const { dict } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content:
-        'Xin chào! Tôi là Kai AI, trợ lý ảo đại diện cho Tài Đỗ (Kai). Tôi được hỗ trợ bởi Cloudflare Workers AI (Llama 3.1) chạy trực tiếp tại Edge. Hãy hỏi tôi về các dự án MCP, full-stack, hoặc kỹ năng của Tài!',
+      content: dict.kai.greeting,
     },
   ]);
   const [input, setInput] = useState('');
@@ -71,7 +65,7 @@ export default function KaiAiChat() {
           ...prev,
           {
             role: 'assistant',
-            content: 'Xin lỗi, không thể kết nối tới Cloudflare Workers AI lúc này. Vui lòng thử lại sau!',
+            content: dict.kai.errorApi,
           },
         ]);
       }
@@ -80,7 +74,7 @@ export default function KaiAiChat() {
         ...prev,
         {
           role: 'assistant',
-          content: 'Lỗi mạng khi gọi Cloudflare Workers AI. Vui lòng thử lại!',
+          content: dict.kai.errorNetwork,
         },
       ]);
     } finally {
@@ -110,7 +104,7 @@ export default function KaiAiChat() {
             </div>
             <div className="flex flex-col text-left">
               <span className="text-xs font-bold leading-tight flex items-center gap-1">
-                Ask Kai AI <Sparkles className="w-3 h-3 text-amber-300" />
+                {dict.kai.ask} <Sparkles className="w-3 h-3 text-amber-300" />
               </span>
               <span className="text-[9px] opacity-80 leading-none">Cloudflare Workers AI</span>
             </div>
@@ -122,7 +116,7 @@ export default function KaiAiChat() {
       {isOpen && (
         <div className="fixed bottom-6 right-4 sm:right-6 z-50 w-[92vw] sm:w-[400px] h-[540px] max-h-[85vh] rounded-2xl bg-card/90 backdrop-blur-xl border border-primary/30 shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300">
           {/* Header */}
-          <div className="p-3.5 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/10 border-b border-primary/20 flex items-center justify-between">
+          <div className="p-3.5 bg-linear-to-r from-primary/20 via-accent/20 to-primary/10 border-b border-primary/20 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold shadow-md">
                 <FaRobot className="text-sm" />
@@ -174,7 +168,7 @@ export default function KaiAiChat() {
             {isLoading && (
               <div className="flex gap-2 items-center text-muted-foreground text-xs pl-8">
                 <span className="animate-spin text-primary">●</span>
-                <span className="text-[11px]">Kai AI is thinking on Cloudflare Workers AI...</span>
+                <span className="text-[11px]">{dict.kai.thinking}</span>
               </div>
             )}
             <div ref={messagesEndRef} />
@@ -182,7 +176,7 @@ export default function KaiAiChat() {
 
           {/* Quick Prompts */}
           <div className="p-2 border-t border-border/50 bg-background/40 overflow-x-auto flex gap-1.5 no-scrollbar">
-            {QUICK_PROMPTS.map((prompt) => (
+            {dict.kai.quickPrompts.map((prompt) => (
               <button
                 key={prompt}
                 onClick={() => handleSendMessage(prompt)}
@@ -200,7 +194,7 @@ export default function KaiAiChat() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask anything about Tài's projects & skills..."
+              placeholder={dict.kai.placeholder}
               disabled={isLoading}
               className="flex-1 text-xs px-3 py-2 rounded-xl bg-card border border-input focus:outline-none focus:ring-1 focus:ring-primary text-foreground placeholder:text-muted-foreground"
             />

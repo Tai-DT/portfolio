@@ -8,7 +8,7 @@
     "build:worker": "opennextjs-cloudflare build",
     "deploy:worker": "opennextjs-cloudflare build && wrangler deploy",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "d1:create": "wrangler d1 create taido-portfolio-db",
     "d1:migrate": "wrangler d1 execute taido-portfolio-db --remote --file=./migrations/0001_init.sql --yes",
     "d1:migrate:local": "wrangler d1 execute taido-portfolio-db --local --file=./migrations/0001_init.sql --yes",

@@ -586,7 +586,7 @@ export default function AnalogClock({ currentHour, onSelectHour, size = 280, cur
         
         {/* Day/night visual indicator - Enhanced with sun and moon paths */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-900/10 rounded-full" 
+          <div className="absolute inset-0 bg-linear-to-r from-blue-400/10 to-indigo-900/10 rounded-full" 
                style={{ clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)' }}>
             {/* Subtle sun path */}
             <div className="absolute w-full h-full opacity-10" 
@@ -595,7 +595,7 @@ export default function AnalogClock({ currentHour, onSelectHour, size = 280, cur
                    display: selectedAmPm === 'am' ? 'block' : 'none'
                  }}/>
           </div>
-          <div className="absolute inset-0 bg-gradient-to-l from-orange-400/10 to-purple-900/10 rounded-full" 
+          <div className="absolute inset-0 bg-linear-to-l from-orange-400/10 to-purple-900/10 rounded-full" 
                style={{ clipPath: 'polygon(100% 0, 50% 0, 50% 100%, 100% 100%)' }}>
             {/* Subtle moon path */}
             <div className="absolute w-full h-full opacity-10" 
