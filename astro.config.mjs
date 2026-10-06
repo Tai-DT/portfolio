@@ -23,5 +23,9 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      // Workers runtime lacks MessageChannel — use the edge build of react-dom/server
+      alias: { 'react-dom/server': 'react-dom/server.edge' },
+    },
   },
 });
