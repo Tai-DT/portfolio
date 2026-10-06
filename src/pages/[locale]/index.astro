@@ -1,0 +1,31 @@
+---
+import type { Locale } from '../../i18n/types';
+import { LOCALES, getDict, isLocale } from '../../i18n';
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Projects from '../../components/Projects.astro';
+import Skills from '../../components/Skills.astro';
+import Guestbook from '../../components/Guestbook.astro';
+import Contact from '../../components/Contact.astro';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+if (!isLocale(locale)) return Astro.redirect('/en');
+
+const dict = getDict(locale as Locale);
+---
+
+<Base locale={locale as Locale} dict={dict}>
+  <Hero dict={dict} />
+  <About dict={dict} />
+  <Projects dict={dict} />
+  <Skills dict={dict} />
+  <Guestbook dict={dict} />
+  <Contact dict={dict} />
+</Base>

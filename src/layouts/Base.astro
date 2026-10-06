@@ -1,0 +1,138 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import type { Locale } from '../i18n/types';
+import type { Dictionary } from '../i18n/types';
+import { LOCALES, HTML_LANG } from '../i18n';
+import { PERSONAL_INFO } from '../data/portfolio';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Aurora from '../components/Aurora.astro';
+import Intro from '../components/Intro.astro';
+import KaiChat from '../components/react/KaiChat';
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+const { meta } = dict;
+const site = 'https://taido.dev';
+const canonical = `${site}/${locale}`;
+const alternates = LOCALES.map((l) => ({ locale: l, url: `${site}/${l}` }));
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: PERSONAL_INFO.fullName,
+  alternateName: PERSONAL_INFO.alias,
+  jobTitle: PERSONAL_INFO.role,
+  url: site,
+  email: `mailto:${PERSONAL_INFO.email}`,
+  address: { '@type': 'PostalAddress', addressLocality: 'Ho Chi Minh City', addressCountry: 'VN' },
+  sameAs: [PERSONAL_INFO.github],
+  knowsAbout: ['Model Context Protocol', 'AI Agents', 'Cloudflare Workers', 'Next.js', 'Swift', 'Go'],
+};
+---
+
+<!doctype html>
+<html lang={HTML_LANG[locale]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <meta name="author" content={PERSONAL_INFO.fullName} />
+    <link rel="canonical" href={canonical} />
+    {alternates.map((a) => <link rel="alternate" hreflang={HTML_LANG[a.locale]} href={a.url} />)}
+    <link rel="alternate" hreflang="x-default" href={`${site}/en`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={PERSONAL_INFO.domain} />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={PERSONAL_INFO.avatarUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={meta.title} />
+    <meta name="twitter:description" content={meta.description} />
+    <meta name="twitter:image" content={PERSONAL_INFO.avatarUrl} />
+    <meta name="theme-color" content="#0e0a1a" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline>
+      (() => {
+        try {
+          const t = localStorage.getItem('portfolio-theme');
+          if (t === 'light') document.documentElement.classList.add('light');
+        } catch {}
+      })();
+    </script>
+    <ClientRouter />
+  </head>
+  <body class="relative min-h-screen antialiased">
+    <Intro fullName={PERSONAL_INFO.fullName} role={PERSONAL_INFO.role} domain={PERSONAL_INFO.domain} />
+    <Aurora />
+    <Header locale={locale} dict={dict} />
+    <main>
+      <slot />
+    </main>
+    <Footer dict={dict} />
+    <KaiChat client:idle dict={dict.kai} />
+    <script is:inline>
+      (() => {
+        const init = () => {
+          // Theme toggle
+          document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
+            if (btn.dataset.bound) return;
+            btn.dataset.bound = '1';
+            btn.addEventListener('click', () => {
+              const html = document.documentElement;
+              const light = html.classList.toggle('light');
+              try { localStorage.setItem('portfolio-theme', light ? 'light' : 'dark'); } catch {}
+              document.querySelectorAll('[data-icon-sun], [data-icon-moon]').forEach((el) => {
+                el.classList.toggle('hidden', el.dataset.iconSun !== undefined ? light : !light);
+              });
+            });
+          });
+
+          // Scroll reveals
+          const io = new IntersectionObserver(
+            (entries) => {
+              for (const e of entries) {
+                if (e.isIntersecting) {
+                  e.target.classList.add('revealed');
+                  io.unobserve(e.target);
+                }
+              }
+            },
+            { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+          );
+          document.querySelectorAll('[data-reveal]:not(.revealed)').forEach((el) => io.observe(el));
+
+          // 3D tilt cards
+          document.querySelectorAll('[data-tilt]').forEach((card) => {
+            if (card.dataset.tiltBound) return;
+            card.dataset.tiltBound = '1';
+            const inner = card.querySelector('.tilt-inner');
+            if (!inner) return;
+            card.addEventListener('pointermove', (ev) => {
+              const r = card.getBoundingClientRect();
+              const px = (ev.clientX - r.left) / r.width;
+              const py = (ev.clientY - r.top) / r.height;
+              inner.style.transform = `rotateY(${(px - 0.5) * 10}deg) rotateX(${(0.5 - py) * 10}deg) translateZ(12px)`;
+              card.style.setProperty('--glare-x', `${px * 100}%`);
+              card.style.setProperty('--glare-y', `${py * 100}%`);
+            });
+            card.addEventListener('pointerleave', () => {
+              inner.style.transform = '';
+            });
+          });
+        };
+        init();
+        document.addEventListener('astro:page-load', init);
+      })();
+    </script>
+  </body>
+</html>

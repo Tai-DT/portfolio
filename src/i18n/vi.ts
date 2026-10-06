@@ -1,0 +1,160 @@
+import type { Dictionary } from './types';
+
+const vi: Dictionary = {
+  meta: {
+    title: 'Tài Đỗ (Kai) — Full-Stack Developer & AI Systems Engineer',
+    description:
+      'Portfolio của Tài Đỗ (Kai) — Full-Stack Developer & AI Engineer tại TP.HCM, chuyên MCP server, AI agents, ứng dụng Cloudflare edge và phần mềm macOS/mobile native.',
+  },
+  language: {
+    label: 'Ngôn ngữ',
+    en: 'English',
+    vi: 'Tiếng Việt',
+    jp: '日本語',
+  },
+  nav: {
+    about: 'Giới Thiệu',
+    projects: 'Dự Án',
+    skills: 'Kỹ Năng',
+    guestbook: 'Sổ Lưu Bút',
+    contact: 'Liên Hệ',
+  },
+  hero: {
+    status: 'Sẵn sàng nhận dự án AI & Full-Stack',
+    greeting: 'Xin chào, tôi là {name}',
+    bio: 'Full-Stack Developer & AI Engineer — đam mê xây dựng MCP server hiệu năng cao, các tác tử AI tự chủ, nền tảng web hiện đại và ứng dụng macOS/mobile native.',
+    viewWork: 'Xem Dự Án Nổi Bật',
+    getInTouch: 'Liên Hệ Ngay',
+    downloadCV: 'Tải CV',
+    edgeHosted: 'Chạy trên Cloudflare Edge tại {domain}',
+    scrollToAbout: 'Cuộn xuống phần Giới Thiệu',
+  },
+  about: {
+    title: 'Giới Thiệu',
+    bio: [
+      'Tôi chuyên về kỹ thuật ứng dụng cloud-native full-stack và hệ thống tác tử thông minh. Với kinh nghiệm thực chiến trải dài qua Model Context Protocol (MCP), backend Go thông lượng cao, frontend Next.js/React hiện đại, và Swift/SwiftUI native cho macOS & iOS, tôi thích kết nối kiến trúc kỹ thuật sâu với trải nghiệm người dùng ấn tượng.',
+      'Hiện đang xây dựng công cụ mã nguồn mở cho developer, workflow AI coding agent, và các ứng dụng edge có khả năng mở rộng chạy trên Cloudflare Workers và database D1.',
+    ],
+    stats: {
+      repos: 'Repo công khai',
+      edge: 'Cloudflare Native',
+      platform: 'Đa nền tảng',
+    },
+    pillars: {
+      ai: {
+        title: 'AI Agents & MCP',
+        desc: 'Xây dựng Model Context Protocol server tùy chỉnh, điều phối LLM và workflow developer tự động.',
+      },
+      cloud: {
+        title: 'Cloudflare D1 & Edge',
+        desc: 'Thực thi serverless dưới mili-giây qua Cloudflare Workers, Pages và database SQL D1 phân tán.',
+      },
+      mobile: {
+        title: 'macOS & Mobile',
+        desc: 'Phát triển tiện ích Apple native bằng Swift/SwiftUI và ứng dụng mobile đa nền tảng với React Native.',
+      },
+      web: {
+        title: 'Full-Stack Web',
+        desc: 'Next.js 15, React 19, TypeScript hiệu năng cao, microservice Go/Gin và 3D WebGL tương tác.',
+      },
+    },
+    experience: {
+      title: 'Kinh Nghiệm Làm Việc',
+      items: [
+        {
+          role: 'Full-Stack Developer',
+          company: 'VVMV',
+          period: '2026 — Hiện tại',
+          description: 'Phát triển ứng dụng web full-stack cho hệ thống quản lý hải quan và kho.',
+        },
+      ],
+    },
+  },
+  projects: {
+    title: 'Dự Án Nổi Bật',
+    subtitlePre: 'Các dự án thực tế từ GitHub của tôi (',
+    subtitlePost: '), trải dài từ công cụ AI agent, tiện ích macOS native đến nền tảng full-stack.',
+    categories: {
+      all: 'Tất cả',
+      ai: 'AI & MCP',
+      web: 'Web Full-Stack',
+      mobile: 'Mobile & Native',
+      tools: 'Dev Tools',
+    },
+    sourceCode: 'Mã Nguồn',
+    visitDemo: 'Xem Demo',
+  },
+  skills: {
+    title: 'Kỹ Năng Kỹ Thuật',
+    subtitle: 'Các công nghệ, framework và phương pháp kỹ thuật được áp dụng trong dự án production và mã nguồn mở.',
+  },
+  guestbook: {
+    title: 'Sổ Lưu Bút Cloudflare D1',
+    subtitlePre: 'Hãy để lại lời nhắn! Nội dung được lưu trực tiếp trong ',
+    subtitleDb: 'Cloudflare D1 SQL Database',
+    subtitlePost: ' ở edge.',
+    signTitle: 'Ký Sổ Lưu Bút',
+    signDesc: 'Bản ghi edge bền vững lưu trên Cloudflare D1',
+    nameLabel: 'Tên của bạn',
+    namePlaceholder: 'VD: Minh Anh',
+    messageLabel: 'Lời nhắn',
+    messagePlaceholder: 'Để lại bình luận hoặc chào hỏi...',
+    submit: 'Ký Sổ Lưu Bút',
+    submitting: 'Đang lưu vào D1...',
+    recent: 'Lời nhắn gần đây',
+    connected: 'Đã kết nối D1',
+    connecting: 'Đang kết nối Cloudflare D1...',
+    empty: 'Chưa có lời nhắn nào. Hãy là người đầu tiên!',
+    toastEmpty: 'Vui lòng nhập tên và lời nhắn ngắn.',
+    toastSuccess: 'Lời nhắn của bạn đã được thêm vào Sổ Lưu Bút Cloudflare D1!',
+    toastError: 'Gửi lời nhắn thất bại.',
+    toastNetwork: 'Lỗi mạng khi gửi sổ lưu bút.',
+  },
+  contact: {
+    title: 'Liên Hệ',
+    subtitle: 'Có dự án trong đầu, muốn hợp tác về công cụ AI, hoặc cần kỹ thuật edge? Gửi tin nhắn cho tôi bên dưới.',
+    infoTitle: 'Thông Tin Liên Hệ',
+    infoDesc: 'Luôn liên lạc được qua email và GitHub',
+    email: 'Email',
+    github: 'GitHub',
+    location: 'Vị trí',
+    domain: 'Tên miền production',
+    fastResponse: 'Phản hồi nhanh trong vòng 24 giờ',
+    formTitle: 'Gửi Tin Nhắn Trực Tiếp',
+    formDesc: 'Tin nhắn được định tuyến và lưu trong Cloudflare D1',
+    nameLabel: 'Tên của bạn',
+    namePlaceholder: 'Nguyễn Văn A',
+    emailLabel: 'Email của bạn',
+    emailPlaceholder: 'ban@congty.com',
+    subjectLabel: 'Chủ đề',
+    subjectPlaceholder: 'MCP Tooling / Dự án Full-Stack / Hỏi chung',
+    messageLabel: 'Tin nhắn',
+    messagePlaceholder: 'Hãy kể về dự án, timeline, hoặc ý tưởng của bạn...',
+    send: 'Gửi Tin Nhắn',
+    sending: 'Đang lưu vào Cloudflare D1...',
+    toastEmpty: 'Vui lòng điền đầy đủ các trường bắt buộc.',
+    toastSuccess: 'Đã gửi tin nhắn thành công! Đã lưu trong Cloudflare D1.',
+    toastError: 'Gửi tin nhắn thất bại.',
+    toastNetwork: 'Lỗi mạng. Vui lòng thử lại hoặc email trực tiếp.',
+  },
+  kai: {
+    ask: 'Hỏi Kai AI',
+    greeting:
+      'Xin chào! Tôi là Kai AI, trợ lý ảo đại diện cho Tài Đỗ (Kai). Tôi được hỗ trợ bởi Cloudflare Workers AI (Llama 3.1) chạy trực tiếp tại Edge. Hãy hỏi tôi về các dự án MCP, full-stack, hoặc kỹ năng của Tài!',
+    thinking: 'Kai AI đang suy nghĩ trên Cloudflare Workers AI...',
+    placeholder: 'Hỏi gì cũng được về dự án & kỹ năng của Tài...',
+    errorApi: 'Xin lỗi, không thể kết nối tới Cloudflare Workers AI lúc này. Vui lòng thử lại sau!',
+    errorNetwork: 'Lỗi mạng khi gọi Cloudflare Workers AI. Vui lòng thử lại!',
+    quickPrompts: [
+      'Dự án nổi bật nhất của Tài?',
+      'Tài làm gì với Model Context Protocol (MCP)?',
+      'Kiến trúc Cloudflare D1 & R2 của trang này?',
+      'Cách liên hệ phỏng vấn hoặc hợp tác?',
+    ],
+  },
+  footer: {
+    tagline: 'Thiết kế & phát triển bởi {name}. Deploy edge trên Cloudflare Workers (Astro • D1 • R2 • Workers AI).',
+  },
+};
+
+export default vi;
