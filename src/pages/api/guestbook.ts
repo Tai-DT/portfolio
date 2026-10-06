@@ -16,7 +16,22 @@ export const GET: APIRoute = async ({ locals }) => {
 
 export const POST: APIRoute = async ({ request, locals }) => {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as Record<string, unknown>;
+    // Honeypot: bots that fill the hidden field get a fake success and are dropped.
+    if (body && typeof body.website === 'string' && body.website !== '') {
+      return Response.json(
+        {
+          success: true,
+          entry: {
+            id: -1,
+            name: String(body.name ?? ''),
+            message: String(body.message ?? ''),
+            created_at: new Date().toISOString(),
+          },
+        },
+        { status: 201 }
+      );
+    }
     const validation = GuestbookSchema.safeParse(body);
     if (!validation.success) {
       return Response.json(

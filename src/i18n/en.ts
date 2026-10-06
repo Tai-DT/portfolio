@@ -12,6 +12,11 @@ const en: Dictionary = {
     vi: 'Tiếng Việt',
     jp: '日本語',
   },
+  a11y: {
+    skip: 'Skip to content',
+    menu: 'Open menu',
+    closeMenu: 'Close menu',
+  },
   nav: {
     about: 'About',
     projects: 'Projects',

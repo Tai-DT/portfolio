@@ -19,20 +19,47 @@ interface Props {
 const { locale, dict } = Astro.props;
 const { meta } = dict;
 const site = 'https://taido.dev';
-const canonical = `${site}/${locale}`;
-const alternates = LOCALES.map((l) => ({ locale: l, url: `${site}/${l}` }));
+const canonical = `${site}/${locale}/`;
+const alternates = LOCALES.map((l) => ({ locale: l, url: `${site}/${l}/` }));
+const OG_LOCALE: Record<Locale, string> = { en: 'en_US', vi: 'vi_VN', jp: 'ja_JP' };
+const ogImage = `${site}/og.png`;
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: PERSONAL_INFO.fullName,
-  alternateName: PERSONAL_INFO.alias,
-  jobTitle: PERSONAL_INFO.role,
-  url: site,
-  email: `mailto:${PERSONAL_INFO.email}`,
-  address: { '@type': 'PostalAddress', addressLocality: 'Ho Chi Minh City', addressCountry: 'VN' },
-  sameAs: [PERSONAL_INFO.github],
-  knowsAbout: ['Model Context Protocol', 'AI Agents', 'Cloudflare Workers', 'Next.js', 'Swift', 'Go'],
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${site}/#person`,
+      name: PERSONAL_INFO.fullName,
+      alternateName: PERSONAL_INFO.alias,
+      jobTitle: PERSONAL_INFO.role,
+      url: site,
+      image: PERSONAL_INFO.avatarUrl,
+      email: `mailto:${PERSONAL_INFO.email}`,
+      address: { '@type': 'PostalAddress', addressLocality: 'Ho Chi Minh City', addressCountry: 'VN' },
+      sameAs: [PERSONAL_INFO.github],
+      knowsAbout: ['Model Context Protocol', 'AI Agents', 'Cloudflare Workers', 'Astro', 'Next.js', 'Swift', 'Go'],
+      knowsLanguage: ['en', 'vi', 'ja'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site}/#website`,
+      url: site,
+      name: PERSONAL_INFO.domain,
+      description: meta.description,
+      publisher: { '@id': `${site}/#person` },
+      inLanguage: LOCALES.map((l) => HTML_LANG[l]),
+    },
+    {
+      '@type': 'WebPage',
+      url: canonical,
+      name: meta.title,
+      description: meta.description,
+      isPartOf: { '@id': `${site}/#website` },
+      about: { '@id': `${site}/#person` },
+      inLanguage: HTML_LANG[locale],
+    },
+  ],
 };
 ---
 
@@ -44,21 +71,31 @@ const jsonLd = {
     <title>{meta.title}</title>
     <meta name="description" content={meta.description} />
     <meta name="author" content={PERSONAL_INFO.fullName} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="color-scheme" content="dark light" />
     <link rel="canonical" href={canonical} />
     {alternates.map((a) => <link rel="alternate" hreflang={HTML_LANG[a.locale]} href={a.url} />)}
-    <link rel="alternate" hreflang="x-default" href={`${site}/en`} />
+    <link rel="alternate" hreflang="x-default" href={`${site}/en/`} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={PERSONAL_INFO.domain} />
     <meta property="og:title" content={meta.title} />
     <meta property="og:description" content={meta.description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={PERSONAL_INFO.avatarUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={meta.title} />
+    <meta property="og:locale" content={OG_LOCALE[locale]} />
+    {LOCALES.filter((l) => l !== locale).map((l) => <meta property="og:locale:alternate" content={OG_LOCALE[l]} />)}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={meta.title} />
     <meta name="twitter:description" content={meta.description} />
-    <meta name="twitter:image" content={PERSONAL_INFO.avatarUrl} />
-    <meta name="theme-color" content="#0e0a1a" />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e0a1a" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f4ff" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>
@@ -72,10 +109,16 @@ const jsonLd = {
     <ClientRouter />
   </head>
   <body class="relative min-h-screen antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:text-primary-foreground"
+    >
+      {dict.a11y.skip}
+    </a>
     <Intro fullName={PERSONAL_INFO.fullName} role={PERSONAL_INFO.role} domain={PERSONAL_INFO.domain} />
     <Aurora />
     <Header locale={locale} dict={dict} />
-    <main>
+    <main id="main">
       <slot />
     </main>
     <Footer dict={dict} />
@@ -110,6 +153,23 @@ const jsonLd = {
             { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
           );
           document.querySelectorAll('[data-reveal]:not(.revealed)').forEach((el) => io.observe(el));
+
+          // Mobile nav
+          const menuBtn = document.querySelector('[data-mobile-menu-btn]');
+          const menuPanel = document.querySelector('[data-mobile-menu]');
+          if (menuBtn && menuPanel && !menuBtn.dataset.bound) {
+            menuBtn.dataset.bound = '1';
+            menuBtn.addEventListener('click', () => {
+              const open = menuPanel.classList.toggle('hidden') === false;
+              menuBtn.setAttribute('aria-expanded', String(open));
+            });
+            menuPanel.querySelectorAll('a').forEach((a) =>
+              a.addEventListener('click', () => {
+                menuPanel.classList.add('hidden');
+                menuBtn.setAttribute('aria-expanded', 'false');
+              })
+            );
+          }
 
           // 3D tilt cards
           document.querySelectorAll('[data-tilt]').forEach((card) => {

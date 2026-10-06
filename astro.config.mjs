@@ -12,7 +12,15 @@ export default defineConfig({
     platformProxy: { enabled: true, remoteBindings: false },
     imageService: 'passthrough',
   }),
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'en',
+        locales: { en: 'en', vi: 'vi', jp: 'ja' },
+      },
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

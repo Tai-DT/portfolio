@@ -20,7 +20,7 @@ interface ContactDict {
 }
 
 export default function ContactForm({ dict }: { dict: ContactDict }) {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '', website: '' });
   const [sending, setSending] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
 
@@ -49,11 +49,12 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
           email: form.email.trim(),
           subject: form.subject.trim() || undefined,
           message: form.message.trim(),
+          website: form.website,
         }),
       });
       const data = (await res.json()) as { success?: boolean };
       if (data.success) {
-        setForm({ name: '', email: '', subject: '', message: '' });
+          setForm({ name: '', email: '', subject: '', message: '', website: '' });
         setToast(dict.toastSuccess);
       } else {
         setToast(dict.toastError);
@@ -88,6 +89,16 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
         {dict.messageLabel}
         <textarea value={form.message} onChange={set('message')} placeholder={dict.messagePlaceholder} maxLength={2000} rows={5} className={`${inputCls} resize-none`} />
       </label>
+      <input
+        type="text"
+        name="website"
+        value={form.website}
+        onChange={set('website')}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-[9999px] h-0 w-0 opacity-0"
+      />
       <button type="submit" disabled={sending} className="btn-gradient mt-5 w-full rounded-xl px-5 py-3 text-sm font-semibold disabled:opacity-40">
         {sending ? dict.sending : dict.send}
       </button>

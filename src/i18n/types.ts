@@ -23,6 +23,11 @@ export interface Dictionary {
     vi: string;
     jp: string;
   };
+  a11y: {
+    skip: string;
+    menu: string;
+    closeMenu: string;
+  };
   nav: {
     about: string;
     projects: string;

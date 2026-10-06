@@ -33,6 +33,7 @@ export default function GuestbookApp({ dict }: { dict: GuestbookDict }) {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
+  const [website, setWebsite] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'sending'>('loading');
   const [toast, setToast] = useState<string | null>(null);
 
@@ -63,7 +64,7 @@ export default function GuestbookApp({ dict }: { dict: GuestbookDict }) {
       const res = await fetch('/api/guestbook', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name.trim(), message: message.trim() }),
+        body: JSON.stringify({ name: name.trim(), message: message.trim(), website }),
       });
       const data = (await res.json()) as { success?: boolean; entry?: Entry };
       if (data.success && data.entry) {
@@ -108,6 +109,16 @@ export default function GuestbookApp({ dict }: { dict: GuestbookDict }) {
             className="mt-1.5 w-full resize-none rounded-xl border border-border bg-background/60 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-aurora-1/60"
           />
         </label>
+        <input
+          type="text"
+          name="website"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-[9999px] h-0 w-0 opacity-0"
+        />
         <button
           type="submit"
           disabled={status === 'sending'}

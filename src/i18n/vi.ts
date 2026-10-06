@@ -12,6 +12,11 @@ const vi: Dictionary = {
     vi: 'Tiếng Việt',
     jp: '日本語',
   },
+  a11y: {
+    skip: 'Chuyển đến nội dung',
+    menu: 'Mở menu',
+    closeMenu: 'Đóng menu',
+  },
   nav: {
     about: 'Giới Thiệu',
     projects: 'Dự Án',

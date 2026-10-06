@@ -6,7 +6,11 @@ export const prerender = false;
 
 export const POST: APIRoute = async ({ request, locals }) => {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as Record<string, unknown>;
+    // Honeypot: bots that fill the hidden field get a fake success and are dropped.
+    if (body && typeof body.website === 'string' && body.website !== '') {
+      return Response.json({ success: true, message: 'OK', id: -1 }, { status: 201 });
+    }
     const validation = ContactSchema.safeParse(body);
     if (!validation.success) {
       return Response.json(

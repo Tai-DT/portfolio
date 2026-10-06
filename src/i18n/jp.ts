@@ -12,6 +12,11 @@ const jp: Dictionary = {
     vi: 'Tiếng Việt',
     jp: '日本語',
   },
+  a11y: {
+    skip: 'コンテンツへスキップ',
+    menu: 'メニューを開く',
+    closeMenu: 'メニューを閉じる',
+  },
   nav: {
     about: 'プロフィール',
     projects: 'プロジェクト',
