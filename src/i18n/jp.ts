@@ -33,7 +33,7 @@ const jp: Dictionary = {
     downloadCV: '履歴書をダウンロード',
     edgeHosted: '{domain} でEdgeホスティング中',
     scrollToAbout: 'プロフィールへスクロール',
-    highlights: ['38+ GitHubリポジトリ', '3年以上の経験', 'AIエージェント & MCP', 'EN · VI · JA'],
+    highlights: ['38+ GitHubリポジトリ', '5年以上の経験', 'AIエージェント & MCP', 'EN · VI · JA'],
   },
   about: {
     title: '私について',

@@ -33,7 +33,7 @@ const vi: Dictionary = {
     downloadCV: 'Tải CV',
     edgeHosted: 'Chạy trên Cloudflare Edge tại {domain}',
     scrollToAbout: 'Cuộn xuống phần Giới Thiệu',
-    highlights: ['38+ repo trên GitHub', '3+ năm kinh nghiệm', 'AI Agents & MCP', 'EN · VI · JA'],
+    highlights: ['38+ repo trên GitHub', '5+ năm kinh nghiệm', 'AI Agents & MCP', 'EN · VI · JA'],
   },
   about: {
     title: 'Giới Thiệu',

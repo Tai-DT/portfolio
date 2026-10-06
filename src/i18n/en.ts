@@ -33,7 +33,7 @@ const en: Dictionary = {
     downloadCV: 'Download CV',
     edgeHosted: 'Edge hosted on {domain}',
     scrollToAbout: 'Scroll to About section',
-    highlights: ['38+ GitHub repos', '3+ years shipping', 'AI Agents & MCP', 'EN · VI · JA'],
+    highlights: ['38+ GitHub repos', '5+ years shipping', 'AI Agents & MCP', 'EN · VI · JA'],
   },
   about: {
     title: 'About Me',

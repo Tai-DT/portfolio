@@ -42,7 +42,7 @@ export const PERSONAL_INFO = {
   stats: {
     publicRepos: '38+',
     focusAreas: ['AI Agents & MCP', 'Full-Stack Web', 'Swift & macOS', 'Cloudflare Edge'],
-    experienceYears: '3+ Years',
+    experienceYears: '5+ Years',
   }
 };
 
@@ -142,7 +142,7 @@ export const PROJECTS: Project[] = [
 ];
 
 export const STACK_MARQUEE: string[] = [
-  'TypeScript', 'Go', 'Swift', 'SwiftUI', 'Model Context Protocol', 'AI Agents',
+  'TypeScript', 'Go', 'Rust', 'Swift', 'SwiftUI', 'Model Context Protocol', 'AI Agents',
   'Cloudflare Workers', 'Cloudflare D1', 'Workers AI', 'Astro', 'Next.js', 'React 19',
   'React Native', 'Kotlin / Android', 'Tailwind CSS', 'Three.js', 'Docker', 'PostgreSQL',
 ];
@@ -187,6 +187,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       { name: 'Swift & SwiftUI (macOS / iOS)', level: 'Advanced', description: 'Native Apple platform applications, Liquid Glass UI, storage APIs' },
       { name: 'React Native & Expo', level: 'Advanced', description: 'Cross-platform mobile apps for iOS and Android' },
       { name: 'Electron & Tauri', level: 'Advanced', description: 'Cross-platform desktop tools for macOS and Windows' },
+      { name: 'Rust', level: 'Intermediate', description: 'Systems programming, Tauri backends, memory-safe high-performance tooling' },
       { name: 'Hardware & Media Streaming', level: 'Intermediate', description: 'Real-time camera/audio streaming, H.264 encoding' },
     ]
   },
