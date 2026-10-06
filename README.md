@@ -14,6 +14,7 @@ Personal portfolio rebuilt on **Astro + Cloudflare**: static-first pages for SEO
 
 ```bash
 npm install --legacy-peer-deps
+npx wrangler d1 migrations apply DB --local   # one-time: create local D1 tables
 npm run dev       # astro dev (platformProxy gives local D1/AI bindings)
 npm run check     # astro check (types)
 npm run lint      # eslint

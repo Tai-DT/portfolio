@@ -13,6 +13,6 @@ const subtitle = `${dict.guestbook.subtitlePre}${dict.guestbook.subtitleDb}${dic
 <section id="guestbook" class="relative mx-auto max-w-5xl scroll-mt-24 px-6 py-24">
   <SectionHeading title={dict.guestbook.title} subtitle={subtitle} />
   <div data-reveal>
-    <GuestbookApp client:visible dict={dict.guestbook} />
+    <GuestbookApp client:load dict={dict.guestbook} />
   </div>
 </section>

@@ -79,7 +79,7 @@ const jsonLd = {
       <slot />
     </main>
     <Footer dict={dict} />
-    <KaiChat client:idle dict={dict.kai} />
+    <KaiChat client:load dict={dict.kai} />
     <script is:inline>
       (() => {
         const init = () => {

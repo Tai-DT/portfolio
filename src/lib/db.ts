@@ -51,7 +51,7 @@ const localGuestbookStore: GuestbookEntry[] = [
   {
     id: 2,
     name: 'Alex Rivers',
-    message: 'Incredible 3D bumblebee companion and seamless time-based themes! Great work on Archify MCP.',
+    message: 'Impressive constellation hero and silky locale switching! Great work on Archify MCP.',
     avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80',
     created_at: new Date(Date.now() - 86400000).toISOString(),
   }
@@ -68,27 +68,31 @@ export async function saveContactMessage(
 ): Promise<{ success: boolean; id: number; message: string }> {
   try {
     if (d1 && typeof d1.prepare === 'function') {
-      const result = await d1
-        .prepare(
-          `INSERT INTO contact_messages (name, email, subject, message, country, ip) 
-           VALUES (?, ?, ?, ?, ?, ?)`
-        )
-        .bind(
-          data.name,
-          data.email,
-          data.subject || 'Portfolio Inquiry',
-          data.message,
-          data.country || 'Unknown',
-          data.ip || 'Anonymous'
-        )
-        .run();
+      try {
+        const result = await d1
+          .prepare(
+            `INSERT INTO contact_messages (name, email, subject, message, country, ip) 
+             VALUES (?, ?, ?, ?, ?, ?)`
+          )
+          .bind(
+            data.name,
+            data.email,
+            data.subject || 'Portfolio Inquiry',
+            data.message,
+            data.country || 'Unknown',
+            data.ip || 'Anonymous'
+          )
+          .run();
 
-      const insertId = result?.meta?.last_row_id || Date.now();
-      return {
-        success: true,
-        id: insertId,
-        message: 'Message delivered to Cloudflare D1 successfully!'
-      };
+        const insertId = result?.meta?.last_row_id || Date.now();
+        return {
+          success: true,
+          id: insertId,
+          message: 'Message delivered to Cloudflare D1 successfully!'
+        };
+      } catch (d1Err) {
+        console.warn('D1 contact insert failed, falling back to local store:', d1Err);
+      }
     }
 
     // Local in-memory fallback
@@ -119,17 +123,21 @@ export async function getGuestbookEntries(
 ): Promise<GuestbookEntry[]> {
   try {
     if (d1 && typeof d1.prepare === 'function') {
-      const { results } = await d1
-        .prepare(
-          `SELECT id, name, email, message, avatar_url, created_at 
-           FROM guestbook_entries 
-           ORDER BY id DESC 
-           LIMIT ?`
-        )
-        .bind(limit)
-        .all<GuestbookEntry>();
+      try {
+        const { results } = await d1
+          .prepare(
+            `SELECT id, name, email, message, avatar_url, created_at 
+             FROM guestbook_entries 
+             ORDER BY id DESC 
+             LIMIT ?`
+          )
+          .bind(limit)
+          .all<GuestbookEntry>();
 
-      return results || [];
+        return results || [];
+      } catch (d1Err) {
+        console.warn('D1 guestbook select failed, falling back to local store:', d1Err);
+      }
     }
 
     // Return in-memory fallback sorted newest first
@@ -151,23 +159,27 @@ export async function addGuestbookEntry(
     const avatar = data.avatar_url || `https://api.dicebear.com/7.x/identicon/svg?seed=${encodeURIComponent(data.name)}`;
 
     if (d1 && typeof d1.prepare === 'function') {
-      const result = await d1
-        .prepare(
-          `INSERT INTO guestbook_entries (name, email, message, avatar_url) 
-           VALUES (?, ?, ?, ?)`
-        )
-        .bind(data.name, data.email || null, data.message, avatar)
-        .run();
+      try {
+        const result = await d1
+          .prepare(
+            `INSERT INTO guestbook_entries (name, email, message, avatar_url) 
+             VALUES (?, ?, ?, ?)`
+          )
+          .bind(data.name, data.email || null, data.message, avatar)
+          .run();
 
-      const insertId = result?.meta?.last_row_id || Date.now();
-      return {
-        id: insertId,
-        name: data.name,
-        email: data.email,
-        message: data.message,
-        avatar_url: avatar,
-        created_at: new Date().toISOString()
-      };
+        const insertId = result?.meta?.last_row_id || Date.now();
+        return {
+          id: insertId,
+          name: data.name,
+          email: data.email,
+          message: data.message,
+          avatar_url: avatar,
+          created_at: new Date().toISOString()
+        };
+      } catch (d1Err) {
+        console.warn('D1 guestbook insert failed, falling back to local store:', d1Err);
+      }
     }
 
     // Local fallback

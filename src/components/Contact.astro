@@ -50,7 +50,7 @@ const items = [
     <div data-reveal style="--reveal-delay:120ms" class="glass card-hover rounded-2xl p-6">
       <h3 class="font-semibold">{dict.contact.formTitle}</h3>
       <p class="mt-1 text-sm text-muted-foreground">{dict.contact.formDesc}</p>
-      <ContactForm client:visible dict={dict.contact} />
+      <ContactForm client:load dict={dict.contact} />
     </div>
   </div>
 </section>
