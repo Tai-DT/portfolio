@@ -4,8 +4,8 @@
   "description": "Full-Stack Developer & AI Systems Engineer portfolio",
   "start_url": "/en/",
   "display": "standalone",
-  "background_color": "#0e0a1a",
-  "theme_color": "#0e0a1a",
+  "background_color": "#eef1f6",
+  "theme_color": "#eef1f6",
   "icons": [
     { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
     { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }

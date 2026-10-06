@@ -91,8 +91,8 @@ const jsonLd = {
     <meta name="twitter:title" content={meta.title} />
     <meta name="twitter:description" content={meta.description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e0a1a" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f4ff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101a2b" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef1f6" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
@@ -102,7 +102,7 @@ const jsonLd = {
       (() => {
         try {
           const t = localStorage.getItem('portfolio-theme');
-          if (t === 'light') document.documentElement.classList.add('light');
+          if (t === 'dark') document.documentElement.classList.add('dark');
         } catch {}
       })();
     </script>
@@ -132,10 +132,11 @@ const jsonLd = {
             btn.dataset.bound = '1';
             btn.addEventListener('click', () => {
               const html = document.documentElement;
-              const light = html.classList.toggle('light');
-              try { localStorage.setItem('portfolio-theme', light ? 'light' : 'dark'); } catch {}
+              const dark = html.classList.toggle('dark');
+              try { localStorage.setItem('portfolio-theme', dark ? 'dark' : 'light'); } catch {}
               document.querySelectorAll('[data-icon-sun], [data-icon-moon]').forEach((el) => {
-                el.classList.toggle('hidden', el.dataset.iconSun !== undefined ? light : !light);
+                const isSun = el.dataset.iconSun !== undefined;
+                el.classList.toggle('hidden', isSun ? !dark : dark);
               });
             });
           });

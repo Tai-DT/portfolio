@@ -35,7 +35,7 @@ function ParticleSphere() {
     <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
       <PointMaterial
         transparent
-        color="#a78bfa"
+        color="#64d2ff"
         size={0.035}
         sizeAttenuation
         depthWrite={false}
@@ -69,7 +69,7 @@ function Core() {
   });
   return (
     <Icosahedron ref={ref} args={[1.35, 1]}>
-      <meshBasicMaterial color="#67e8f9" wireframe transparent opacity={0.55} />
+      <meshBasicMaterial color="#0a84ff" wireframe transparent opacity={0.55} />
     </Icosahedron>
   );
 }
@@ -77,7 +77,7 @@ function Core() {
 function InnerGlow() {
   return (
     <Icosahedron args={[0.55, 2]}>
-      <meshBasicMaterial color="#e879f9" transparent opacity={0.35} />
+      <meshBasicMaterial color="#5e5ce6" transparent opacity={0.35} />
     </Icosahedron>
   );
 }
@@ -108,9 +108,9 @@ export default function ThreeHero() {
             <Core />
             <InnerGlow />
             <ParticleSphere />
-            <OrbitRing radius={4.2} tilt={[Math.PI / 2.4, 0.4, 0]} speed={0.25} color="#a78bfa" />
-            <OrbitRing radius={4.8} tilt={[Math.PI / 1.9, -0.5, 0]} speed={-0.18} color="#67e8f9" />
-            <OrbitRing radius={3.7} tilt={[Math.PI / 2.8, 0.9, 0]} speed={0.35} color="#e879f9" />
+            <OrbitRing radius={4.2} tilt={[Math.PI / 2.4, 0.4, 0]} speed={0.25} color="#0a84ff" />
+            <OrbitRing radius={4.8} tilt={[Math.PI / 1.9, -0.5, 0]} speed={-0.18} color="#64d2ff" />
+            <OrbitRing radius={3.7} tilt={[Math.PI / 2.8, 0.9, 0]} speed={0.35} color="#5e5ce6" />
           </group>
         </Float>
       </PointerDrift>
