@@ -11,9 +11,13 @@ const { fullName, role, domain } = Astro.props;
   <div class="aurora-blob aurora-blob-1"></div>
   <div class="aurora-blob aurora-blob-2"></div>
   <div class="relative flex flex-col items-center gap-5 px-6 text-center">
-    <div class="intro-logo btn-gradient flex h-24 w-24 items-center justify-center rounded-3xl text-4xl font-black shadow-2xl">
-      TD
-    </div>
+    <img
+      src="/logo.svg"
+      alt="Kai"
+      width={96}
+      height={96}
+      class="intro-logo h-24 w-24 rounded-3xl shadow-2xl"
+    />
     <div class="intro-name text-gradient text-3xl font-black tracking-tight sm:text-4xl">{fullName}</div>
     <p class="intro-role text-sm tracking-wide text-muted-foreground">{role}</p>
     <div class="intro-bar mt-2 h-0.5 w-52 rounded-full bg-gradient-to-r from-aurora-1 via-aurora-3 to-aurora-2"></div>

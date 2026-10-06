@@ -19,9 +19,9 @@ const nav = [
 
 <header class="glass sticky top-3 z-40 mx-3 mt-3 rounded-2xl sm:mx-auto sm:max-w-5xl">
   <div class="flex h-14 items-center justify-between gap-3 px-4 sm:px-6">
-    <a href={`/${locale}`} class="flex items-center gap-2.5 font-bold tracking-tight">
-      <span class="btn-gradient flex h-8 w-8 items-center justify-center rounded-lg text-sm font-black">TD</span>
-      <span class="hidden sm:inline">{PERSONAL_INFO.domain}</span>
+    <a href={`/${locale}`} class="flex items-center gap-2.5 font-bold tracking-tight" aria-label="Kai — {PERSONAL_INFO.domain}">
+      <img src="/logo.svg" alt="" width={32} height={32} class="h-8 w-8 rounded-lg shadow-sm" />
+      <span>Kai<span class="hidden font-normal text-muted-foreground/70 sm:inline"> · {PERSONAL_INFO.domain}</span></span>
     </a>
 
     <nav class="hidden items-center gap-1 md:flex" aria-label="Main">
