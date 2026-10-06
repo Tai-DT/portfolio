@@ -4,15 +4,10 @@ import { JetBrains_Mono as FontMono } from "next/font/google"
 
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider"
-import { TimeProvider } from "@/providers/TimeProvider"
-import { WeatherProvider } from "@/providers/WeatherProvider"
 import { LocaleProvider } from "@/providers/LocaleProvider"
 
 import "./globals.css"
-import { getCurrentHourTheme } from "@/lib/theme-utils"
-import DynamicBackground from "@/components/background/DynamicBackground"
-import { ShadcnThemeController } from "@/components/ui/shadcn-theme-controller";
-import WeatherWidget from "@/components/weather/WeatherWidget"
+import AuroraBackground from "@/components/background/AuroraBackground"
 import { Toaster } from "@/components/ui/sonner"
 
 // Define fonts
@@ -72,28 +67,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <style>{`
-          body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(to bottom, #0A1128, #1e3c72);
-            z-index: -1;
-            transition: opacity 0.3s ease;
-          }
-          .mounted body::before {
-            opacity: 0;
-          }
-        `}</style>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            setTimeout(function() {
-              document.documentElement.classList.add('mounted');
-            }, 300);
-          `
-        }} />
-      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
@@ -103,28 +76,21 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme={getCurrentHourTheme()}
+          defaultTheme="dark"
           enableSystem={false}
           disableTransitionOnChange
         >
-          <TimeProvider>
-            <WeatherProvider>
-              <LocaleProvider>
-                {/* Background layer */}
-                <ShadcnThemeController />
-                <DynamicBackground />
-                
-                {/* Content layer */}
-                <div className="relative z-10">
-                  {children}
-                </div>
-                
-                {/* UI overlay layer */}
-                <WeatherWidget />
-                <Toaster richColors position="top-right" />
-              </LocaleProvider>
-            </WeatherProvider>
-          </TimeProvider>
+          <LocaleProvider>
+            {/* Animated aurora background layer */}
+            <AuroraBackground />
+
+            {/* Content layer */}
+            <div className="relative z-10">
+              {children}
+            </div>
+
+            <Toaster richColors position="top-right" />
+          </LocaleProvider>
         </ThemeProvider>
       </body>
     </html>

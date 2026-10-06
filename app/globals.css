@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @import "./utilities.css";
 
-@custom-variant dark (&:is(.dark *, [class*="dark-"] *));
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
@@ -24,16 +24,11 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -42,12 +37,12 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
 
@@ -55,371 +50,107 @@
     from { height: 0; }
     to { height: var(--radix-accordion-content-height); }
   }
-
   @keyframes accordion-up {
     from { height: var(--radix-accordion-content-height); }
     to { height: 0; }
   }
 }
 
+/* === Aurora design tokens — dark-first === */
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --radius: 0.75rem;
+
+  --background: oklch(0.145 0.035 275);
+  --foreground: oklch(0.96 0.01 260);
+
+  --card: oklch(0.19 0.035 275);
+  --card-foreground: oklch(0.96 0.01 260);
+
+  --popover: oklch(0.17 0.035 275);
+  --popover-foreground: oklch(0.96 0.01 260);
+
+  --primary: oklch(0.65 0.22 285);
+  --primary-foreground: oklch(0.98 0.01 280);
+
+  --secondary: oklch(0.24 0.04 275);
+  --secondary-foreground: oklch(0.92 0.02 265);
+
+  --muted: oklch(0.22 0.03 275);
+  --muted-foreground: oklch(0.68 0.04 265);
+
+  --accent: oklch(0.72 0.15 195);
+  --accent-foreground: oklch(0.15 0.03 260);
+
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(0.98 0.01 20);
+
+  --border: oklch(0.3 0.04 275);
+  --input: oklch(0.28 0.04 275);
+  --ring: oklch(0.65 0.22 285);
+
+  --chart-1: oklch(0.65 0.22 285);
+  --chart-2: oklch(0.72 0.15 195);
+  --chart-3: oklch(0.7 0.2 330);
+  --chart-4: oklch(0.75 0.15 150);
+  --chart-5: oklch(0.8 0.15 85);
+
+  --sidebar: oklch(0.17 0.035 275);
+  --sidebar-foreground: oklch(0.96 0.01 260);
+  --sidebar-primary: oklch(0.65 0.22 285);
+  --sidebar-primary-foreground: oklch(0.98 0.01 280);
+  --sidebar-accent: oklch(0.24 0.04 275);
+  --sidebar-accent-foreground: oklch(0.92 0.02 265);
+  --sidebar-border: oklch(0.3 0.04 275);
+  --sidebar-ring: oklch(0.65 0.22 285);
+
+  /* Aurora blob palette */
+  --aurora-1: oklch(0.58 0.24 285); /* violet */
+  --aurora-2: oklch(0.72 0.16 195); /* cyan */
+  --aurora-3: oklch(0.62 0.24 330); /* fuchsia */
+  --aurora-opacity: 0.35;
+  --grid-line: oklch(1 0 0 / 4%);
+}
+
+.light {
+  --background: oklch(0.985 0.005 260);
+  --foreground: oklch(0.22 0.03 270);
+
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.22 0.03 270);
+
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.22 0.03 270);
 
-  /* Base colors for noon (12PM) */
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
+  --primary: oklch(0.55 0.22 285);
+  --primary-foreground: oklch(0.98 0.01 280);
 
-/* Light theme variations for each hour (6AM-5PM) */
-.light-6am {
-  --background: oklch(0.98 0.02 240); /* Cool dawn blue */
-  --card: oklch(0.99 0.01 240);
-  --popover: oklch(0.99 0.01 240);
-  --primary: oklch(0.205 0.02 30);
-  --accent: oklch(0.97 0.02 30);
-  --chart-1: oklch(0.646 0.222 30);
-}
+  --secondary: oklch(0.95 0.02 265);
+  --secondary-foreground: oklch(0.3 0.04 270);
 
-.light-7am {
-  --background: oklch(0.99 0.03 220); /* Morning sky */
-  --card: oklch(0.995 0.015 220);
-  --popover: oklch(0.995 0.015 220);
-  --primary: oklch(0.205 0.03 45);
-  --accent: oklch(0.97 0.03 45);
-  --chart-1: oklch(0.646 0.222 45);
-}
+  --muted: oklch(0.95 0.015 265);
+  --muted-foreground: oklch(0.5 0.04 270);
 
-.light-8am {
-  --background: oklch(0.995 0.02 200); /* Clear morning */
-  --card: oklch(0.998 0.01 200);
-  --popover: oklch(0.998 0.01 200);
-  --primary: oklch(0.205 0.04 60);
-  --accent: oklch(0.97 0.04 60);
-  --chart-1: oklch(0.646 0.222 60);
-}
+  --accent: oklch(0.62 0.16 200);
+  --accent-foreground: oklch(0.98 0.01 260);
 
-.light-9am {
-  --background: oklch(0.998 0.01 180); /* Bright morning */
-  --card: oklch(0.999 0.005 180);
-  --popover: oklch(0.999 0.005 180);
-  --primary: oklch(0.205 0.05 75);
-  --accent: oklch(0.97 0.05 75);
-  --chart-1: oklch(0.646 0.222 75);
-}
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.98 0.01 20);
 
-.light-10am {
-  --background: oklch(0.999 0.005 160); /* Late morning */
-  --card: oklch(1 0 160);
-  --popover: oklch(1 0 160);
-  --primary: oklch(0.205 0.06 90);
-  --accent: oklch(0.97 0.06 90);
-  --chart-1: oklch(0.646 0.222 90);
-}
+  --border: oklch(0.9 0.015 265);
+  --input: oklch(0.9 0.015 265);
+  --ring: oklch(0.55 0.22 285);
 
-.light-11am {
-  --background: oklch(0.999 0.005 140); /* Approaching noon */
-  --card: oklch(1 0 140);
-  --popover: oklch(1 0 140);
-  --primary: oklch(0.205 0.07 105);
-  --accent: oklch(0.97 0.07 105);
-  --chart-1: oklch(0.646 0.222 105);
-}
+  --sidebar: oklch(0.97 0.01 265);
+  --sidebar-foreground: oklch(0.22 0.03 270);
+  --sidebar-primary: oklch(0.55 0.22 285);
+  --sidebar-primary-foreground: oklch(0.98 0.01 280);
+  --sidebar-accent: oklch(0.94 0.02 265);
+  --sidebar-accent-foreground: oklch(0.3 0.04 270);
+  --sidebar-border: oklch(0.9 0.015 265);
+  --sidebar-ring: oklch(0.55 0.22 285);
 
-/* 12PM is the default :root theme */
-
-.light-1pm {
-  --background: oklch(0.999 0.005 120); /* Early afternoon */
-  --card: oklch(1 0 120);
-  --popover: oklch(1 0 120);
-  --primary: oklch(0.205 0.08 135);
-  --accent: oklch(0.97 0.08 135);
-  --chart-1: oklch(0.646 0.222 135);
-}
-
-.light-2pm {
-  --background: oklch(0.999 0.01 100); /* Mid afternoon */
-  --card: oklch(0.998 0.005 100);
-  --popover: oklch(0.998 0.005 100);
-  --primary: oklch(0.205 0.09 150);
-  --accent: oklch(0.97 0.09 150);
-  --chart-1: oklch(0.646 0.222 150);
-}
-
-.light-3pm {
-  --background: oklch(0.998 0.015 80); /* Late afternoon */
-  --card: oklch(0.997 0.01 80);
-  --popover: oklch(0.997 0.01 80);
-  --primary: oklch(0.205 0.10 165);
-  --accent: oklch(0.97 0.10 165);
-  --chart-1: oklch(0.646 0.222 165);
-}
-
-.light-4pm {
-  --background: oklch(0.995 0.02 60); /* Early evening */
-  --card: oklch(0.996 0.015 60);
-  --popover: oklch(0.996 0.015 60);
-  --primary: oklch(0.205 0.11 180);
-  --accent: oklch(0.97 0.11 180);
-  --chart-1: oklch(0.646 0.222 180);
-}
-
-.light-5pm {
-  --background: oklch(0.99 0.03 40); /* Sunset glow */
-  --card: oklch(0.994 0.02 40);
-  --popover: oklch(0.994 0.02 40);
-  --primary: oklch(0.205 0.12 195);
-  --accent: oklch(0.97 0.12 195);
-  --chart-1: oklch(0.646 0.222 195);
-}
-
-/* Base dark theme (midnight) */
-.dark,
-[class^="dark-"],
-[class*=" dark-"] {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
-
-/* Dark theme variations (6PM-5AM) */
-.dark-6pm {
-  --background: oklch(0.2 0.03 260); /* Twilight */
-  --card: oklch(0.25 0.02 260);
-  --popover: oklch(0.25 0.02 260);
-  --primary: oklch(0.922 0.02 210);
-  --accent: oklch(0.269 0.02 210);
-  --chart-1: oklch(0.488 0.243 210);
-}
-
-.dark-7pm {
-  --background: oklch(0.18 0.04 270); /* Early evening */
-  --card: oklch(0.23 0.03 270);
-  --popover: oklch(0.23 0.03 270);
-  --primary: oklch(0.922 0.03 225);
-  --accent: oklch(0.269 0.03 225);
-  --chart-1: oklch(0.488 0.243 225);
-}
-
-.dark-8pm {
-  --background: oklch(0.17 0.05 280); /* Evening */
-  --card: oklch(0.22 0.04 280);
-  --popover: oklch(0.22 0.04 280);
-  --primary: oklch(0.922 0.04 240);
-  --accent: oklch(0.269 0.04 240);
-  --chart-1: oklch(0.488 0.243 240);
-}
-
-.dark-9pm {
-  --background: oklch(0.16 0.04 290); /* Late evening */
-  --card: oklch(0.21 0.03 290);
-  --popover: oklch(0.21 0.03 290);
-  --primary: oklch(0.922 0.05 255);
-  --accent: oklch(0.269 0.05 255);
-  --chart-1: oklch(0.488 0.243 255);
-}
-
-.dark-10pm {
-  --background: oklch(0.15 0.03 300); /* Night setting in */
-  --card: oklch(0.2 0.02 300);
-  --popover: oklch(0.2 0.02 300);
-  --primary: oklch(0.922 0.06 270);
-  --accent: oklch(0.269 0.06 270);
-  --chart-1: oklch(0.488 0.243 270);
-}
-
-.dark-11pm {
-  --background: oklch(0.14 0.02 310); /* Late night */
-  --card: oklch(0.19 0.01 310);
-  --popover: oklch(0.19 0.01 310);
-  --primary: oklch(0.922 0.07 285);
-  --accent: oklch(0.269 0.07 285);
-  --chart-1: oklch(0.488 0.243 285);
-}
-
-/* 12AM is the default .dark theme */
-
-.dark-1am {
-  --background: oklch(0.13 0.01 320); /* Deep night */
-  --card: oklch(0.18 0.01 320);
-  --popover: oklch(0.18 0.01 320);
-  --primary: oklch(0.922 0.08 315);
-  --accent: oklch(0.269 0.08 315);
-  --chart-1: oklch(0.488 0.243 315);
-}
-
-.dark-2am {
-  --background: oklch(0.13 0.01 330); /* Middle of night */
-  --card: oklch(0.18 0.01 330);
-  --popover: oklch(0.18 0.01 330);
-  --primary: oklch(0.922 0.09 330);
-  --accent: oklch(0.269 0.09 330);
-  --chart-1: oklch(0.488 0.243 330);
-}
-
-.dark-3am {
-  --background: oklch(0.13 0.01 340); /* Late night */
-  --card: oklch(0.18 0.01 340);
-  --popover: oklch(0.18 0.01 340);
-  --primary: oklch(0.922 0.10 345);
-  --accent: oklch(0.269 0.10 345);
-  --chart-1: oklch(0.488 0.243 345);
-}
-
-.dark-4am {
-  --background: oklch(0.14 0.01 350); /* Early morning darkness */
-  --card: oklch(0.19 0.01 350);
-  --popover: oklch(0.19 0.01 350);
-  --primary: oklch(0.922 0.11 360);
-  --accent: oklch(0.269 0.11 360);
-  --chart-1: oklch(0.488 0.243 360);
-}
-
-.dark-5am {
-  --background: oklch(0.15 0.02 10); /* Pre-dawn */
-  --card: oklch(0.2 0.02 10);
-  --popover: oklch(0.2 0.02 10);
-  --primary: oklch(0.922 0.12 15);
-  --accent: oklch(0.269 0.12 15);
-  --chart-1: oklch(0.488 0.243 15);
-}
-
-
-/* Add animations for sky effects */
-@keyframes twinkle {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 1; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes drift {
-  0% { transform: translateX(-10%); }
-  100% { transform: translateX(110%); }
-}
-
-@keyframes fallDrop {
-  0% { 
-    transform: translateY(0) rotate(0deg);
-    opacity: 0.7;
-  }
-  85% {
-    opacity: 0.7;
-  }
-  100% { 
-    transform: translateY(100px) rotate(20deg);
-    opacity: 0;
-  }
-}
-
-@keyframes fallSnow {
-  0% { 
-    transform: translateY(0) translateX(0) rotate(0deg);
-    opacity: 0.8;
-  }
-  50% {
-    transform: translateY(50px) translateX(20px) rotate(180deg);
-    opacity: 1;
-  }
-  100% { 
-    transform: translateY(100px) translateX(-10px) rotate(360deg);
-    opacity: 0.6;
-  }
-}
-
-@keyframes fallLeaf {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0.9;
-  }
-  25% {
-    transform: translateY(25px) translateX(15px) rotate(45deg);
-  }
-  50% {
-    transform: translateY(50px) translateX(-10px) rotate(-30deg);
-    opacity: 0.95;
-  }
-  75% {
-    transform: translateY(75px) translateX(25px) rotate(70deg);
-  }
-  100% {
-    transform: translateY(120px) translateX(-5px) rotate(90deg);
-    opacity: 0.7;
-  }
-}
-
-@keyframes heatDistortion {
-  0% {
-    filter: blur(0px) contrast(1);
-    transform: scale(1);
-  }
-  50% {
-    filter: blur(1px) contrast(1.02);
-    transform: scale(1.005);
-  }
-  100% {
-    filter: blur(0px) contrast(1);
-    transform: scale(1);
-  }
+  --aurora-opacity: 0.22;
+  --grid-line: oklch(0.2 0.03 270 / 5%);
 }
 
 @layer base {
@@ -430,5 +161,115 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+}
+
+/* === Aurora background pieces === */
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: var(--aurora-opacity);
+  will-change: transform;
+}
+
+.aurora-blob-1 {
+  width: 55vmax;
+  height: 55vmax;
+  top: -20vmax;
+  left: -15vmax;
+  background: radial-gradient(circle at center, var(--aurora-1), transparent 65%);
+  animation: aurora-drift-1 36s ease-in-out infinite alternate;
+}
+
+.aurora-blob-2 {
+  width: 45vmax;
+  height: 45vmax;
+  bottom: -18vmax;
+  right: -12vmax;
+  background: radial-gradient(circle at center, var(--aurora-2), transparent 65%);
+  animation: aurora-drift-2 42s ease-in-out infinite alternate;
+}
+
+.aurora-blob-3 {
+  width: 40vmax;
+  height: 40vmax;
+  top: 30%;
+  left: 45%;
+  background: radial-gradient(circle at center, var(--aurora-3), transparent 65%);
+  animation: aurora-drift-3 30s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift-1 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(18vmax, 10vmax) scale(1.15); }
+}
+
+@keyframes aurora-drift-2 {
+  from { transform: translate(0, 0) scale(1.1); }
+  to { transform: translate(-14vmax, -12vmax) scale(0.95); }
+}
+
+@keyframes aurora-drift-3 {
+  from { transform: translate(0, 0) scale(0.9) rotate(0deg); }
+  to { transform: translate(-10vmax, 14vmax) scale(1.1) rotate(20deg); }
+}
+
+.aurora-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 75%);
+}
+
+.aurora-vignette {
+  background: radial-gradient(ellipse 120% 90% at 50% 30%, transparent 55%, var(--background) 100%);
+}
+
+/* === Creative design utilities === */
+.glass {
+  background: color-mix(in oklab, var(--card) 55%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in oklab, var(--border) 60%, transparent);
+}
+
+.text-gradient {
+  background: linear-gradient(115deg, var(--aurora-1), var(--aurora-3) 45%, var(--aurora-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-gradient {
+  background: linear-gradient(115deg, var(--aurora-1), var(--aurora-3));
+  color: var(--primary-foreground);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 30px color-mix(in oklab, var(--aurora-1) 45%, transparent);
+}
+
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in oklab, var(--primary) 50%, transparent);
+  box-shadow: 0 12px 40px color-mix(in oklab, var(--aurora-1) 18%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob {
+    animation: none;
   }
 }

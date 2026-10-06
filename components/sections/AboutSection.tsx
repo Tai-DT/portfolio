@@ -5,6 +5,7 @@ import { FaRobot, FaDatabase, FaApple, FaLayerGroup, FaBriefcase } from 'react-i
 import { SectionHeading } from '@/components/ui/section-heading';
 import { PERSONAL_INFO } from '@/lib/portfolio-data';
 import { useI18n } from '@/providers/LocaleProvider';
+import Reveal from '@/components/motion/Reveal';
 import type { Pillar } from '@/lib/i18n';
 
 const PILLAR_ICONS: Record<string, React.ReactNode> = {
@@ -40,6 +41,7 @@ export default function AboutSection({
       <div className="max-w-5xl mx-auto">
         <SectionHeading title={dict.about.title} />
 
+        <Reveal>
         <div className="grid md:grid-cols-12 gap-10 items-center mb-16">
           {/* Avatar Column */}
           <div className="md:col-span-4 flex flex-col items-center">
@@ -86,8 +88,11 @@ export default function AboutSection({
           </div>
         </div>
 
+        </Reveal>
+
         {/* Work Experience (ported from portfolio-dotai) */}
-        <div className="mb-16 p-6 rounded-xl bg-card/60 backdrop-blur-sm border border-primary/20">
+        <Reveal>
+        <div className="mb-16 p-6 rounded-xl glass card-hover">
           <h3 className="text-xl font-bold mb-5 flex items-center gap-2">
             <FaBriefcase className="text-primary" /> {dict.about.experience.title}
           </h3>
@@ -106,17 +111,18 @@ export default function AboutSection({
           </div>
         </div>
 
+        </Reveal>
+
         {/* 4 Architectural Pillars */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {pillars.map(([key, pillar]) => (
-            <div
-              key={key}
-              className="p-5 rounded-xl bg-card/60 backdrop-blur-sm border border-primary/20 hover:border-primary/50 transition-all hover:-translate-y-1"
-            >
-              {PILLAR_ICONS[key]}
-              <h4 className="font-semibold text-base mb-1.5">{pillar.title}</h4>
-              <p className="text-xs text-muted-foreground leading-normal">{pillar.desc}</p>
-            </div>
+          {pillars.map(([key, pillar], i) => (
+            <Reveal key={key} delay={i * 0.08}>
+              <div className="p-5 rounded-xl glass card-hover h-full">
+                {PILLAR_ICONS[key]}
+                <h4 className="font-semibold text-base mb-1.5">{pillar.title}</h4>
+                <p className="text-xs text-muted-foreground leading-normal">{pillar.desc}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -14,12 +14,9 @@ interface Message {
 export default function KaiAiChat() {
   const { dict } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: dict.kai.greeting,
-    },
-  ]);
+  // Greeting renders straight from dict so it follows the active locale
+  // (storing it in state froze it to whatever locale was active at mount).
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -94,7 +91,7 @@ export default function KaiAiChat() {
         {!isOpen && (
           <button
             onClick={() => setIsOpen(true)}
-            className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-primary text-primary-foreground shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 group border border-primary/30"
+            className="flex items-center gap-2.5 px-4 py-3 rounded-full btn-gradient text-primary-foreground shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 group border border-primary/30"
             aria-label="Open Kai AI Assistant"
           >
             <div className="relative">
@@ -114,7 +111,7 @@ export default function KaiAiChat() {
 
       {/* Chat Window Modal */}
       {isOpen && (
-        <div className="fixed bottom-6 right-4 sm:right-6 z-50 w-[92vw] sm:w-[400px] h-[540px] max-h-[85vh] rounded-2xl bg-card/90 backdrop-blur-xl border border-primary/30 shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300">
+        <div className="fixed bottom-6 right-4 sm:right-6 z-50 w-[92vw] sm:w-[400px] h-[540px] max-h-[85vh] rounded-2xl glass shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300">
           {/* Header */}
           <div className="p-3.5 bg-linear-to-r from-primary/20 via-accent/20 to-primary/10 border-b border-primary/20 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
@@ -143,6 +140,16 @@ export default function KaiAiChat() {
 
           {/* Message History */}
           <div className="flex-1 overflow-y-auto p-3.5 space-y-3 text-xs">
+            {/* Greeting bubble (always localized) */}
+            <div className="flex gap-2.5 justify-start">
+              <div className="w-6 h-6 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center text-[10px] text-primary mt-0.5">
+                🤖
+              </div>
+              <div className="p-3 rounded-2xl max-w-[85%] leading-relaxed bg-background/70 border border-primary/10 text-foreground/90 rounded-tl-sm backdrop-blur-sm">
+                <p className="whitespace-pre-wrap">{dict.kai.greeting}</p>
+              </div>
+            </div>
+
             {messages.map((msg, i) => (
               <div
                 key={i}

@@ -79,7 +79,7 @@ export default function ContactSection({
         <div className="grid md:grid-cols-12 gap-8">
           {/* Contact Details Card */}
           <div className="md:col-span-5">
-            <Card className="bg-card/70 backdrop-blur-md border-primary/20 h-full flex flex-col justify-between">
+            <Card className="glass card-hover h-full flex flex-col justify-between">
               <div>
                 <CardHeader>
                   <CardTitle className="text-lg font-bold">{dict.contact.infoTitle}</CardTitle>
@@ -148,7 +148,7 @@ export default function ContactSection({
 
           {/* Message Form (saves to Cloudflare D1) */}
           <div className="md:col-span-7">
-            <Card className="bg-card/70 backdrop-blur-md border-primary/20">
+            <Card className="glass card-hover">
               <CardHeader>
                 <CardTitle className="text-lg font-bold">{dict.contact.formTitle}</CardTitle>
                 <CardDescription className="text-xs">{dict.contact.formDesc}</CardDescription>
@@ -215,7 +215,7 @@ export default function ContactSection({
                     ></textarea>
                   </div>
 
-                  <Button type="submit" size="default" className="w-full mt-2" disabled={isSubmittingContact}>
+                  <Button type="submit" size="default" className="w-full mt-2 btn-gradient border-0" disabled={isSubmittingContact}>
                     <FaPaperPlane className="mr-2 text-xs" />
                     {isSubmittingContact ? dict.contact.sending : dict.contact.send}
                   </Button>

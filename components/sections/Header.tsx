@@ -18,7 +18,7 @@ export default function Header({
   const { dict } = useI18n();
 
   return (
-    <header className="fixed top-4 left-4 right-4 z-50 max-w-6xl mx-auto backdrop-blur-md bg-background/70 border border-primary/20 rounded-full px-5 py-2.5 shadow-lg flex items-center justify-between transition-all">
+    <header className="fixed top-4 left-4 right-4 z-50 max-w-6xl mx-auto glass rounded-full px-5 py-2.5 shadow-lg flex items-center justify-between transition-all">
       <a href="#hero" className="flex items-center gap-2 group">
         <div className="w-8 h-8 rounded-full bg-linear-to-tr from-primary to-accent flex items-center justify-center text-primary-foreground font-bold text-sm shadow-md">
           TD
@@ -62,9 +62,7 @@ export default function Header({
         >
           <FaGithub className="text-lg" />
         </a>
-        <div className="scale-90">
-          <ModeToggle />
-        </div>
+        <ModeToggle />
       </div>
     </header>
   );

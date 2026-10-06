@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge';
 import { PROJECTS, PERSONAL_INFO, Project } from '@/lib/portfolio-data';
 import { useI18n } from '@/providers/LocaleProvider';
+import Reveal from '@/components/motion/Reveal';
 import type { Dictionary } from '@/lib/i18n';
 
 type CategoryFilter = 'All' | 'AI & MCP' | 'Full-Stack Web' | 'Mobile & Native' | 'Dev Tools';
@@ -44,7 +45,7 @@ export default function ProjectsSection({
     <section
       id="projects"
       ref={sectionRef}
-      className="py-24 px-4 bg-primary/5 backdrop-blur-sm relative z-10"
+      className="py-24 px-4 relative z-10"
       onMouseEnter={() => onHover('projects')}
       onMouseLeave={() => onHover(null)}
     >
@@ -75,10 +76,10 @@ export default function ProjectsSection({
 
         {/* Project Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project: Project) => (
+          {filteredProjects.map((project: Project, i: number) => (
+            <Reveal key={project.id} delay={(i % 3) * 0.08} className="h-full">
             <Card
-              key={project.id}
-              className="flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border-primary/20 bg-card/70 backdrop-blur-md overflow-hidden group"
+              className="flex flex-col justify-between glass card-hover overflow-hidden group h-full"
               onMouseEnter={() => onHover(`project-${project.id}`)}
               onMouseLeave={() => onHover('projects')}
             >
@@ -141,6 +142,7 @@ export default function ProjectsSection({
                 )}
               </CardFooter>
             </Card>
+            </Reveal>
           ))}
         </div>
       </div>

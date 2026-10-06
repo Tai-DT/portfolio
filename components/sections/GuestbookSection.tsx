@@ -84,7 +84,7 @@ export default function GuestbookSection({
     <section
       id="guestbook"
       ref={sectionRef}
-      className="py-24 px-4 bg-primary/5 backdrop-blur-sm relative z-10"
+      className="py-24 px-4 relative z-10"
       onMouseEnter={() => onHover('guestbook')}
       onMouseLeave={() => onHover(null)}
     >
@@ -99,7 +99,7 @@ export default function GuestbookSection({
         <div className="grid md:grid-cols-12 gap-8">
           {/* Input Form */}
           <div className="md:col-span-5">
-            <Card className="bg-card/80 backdrop-blur-md border-primary/20">
+            <Card className="glass">
               <CardHeader>
                 <CardTitle className="text-lg font-bold flex items-center gap-2">
                   <FaDatabase className="text-primary" /> {dict.guestbook.signTitle}
@@ -160,7 +160,7 @@ export default function GuestbookSection({
                 guestbookEntries.map((entry) => (
                   <div
                     key={entry.id}
-                    className="p-3.5 rounded-lg bg-card/60 backdrop-blur-sm border border-primary/10 hover:border-primary/30 transition-colors"
+                    className="p-3.5 rounded-lg glass card-hover"
                   >
                     <div className="flex items-center justify-between mb-1.5">
                       <div className="flex items-center gap-2">

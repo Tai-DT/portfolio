@@ -20,7 +20,7 @@ export function SectionHeading({
     <div className={cn("space-y-2 text-center mb-12", className)}>
       <h2 
         className={cn(
-          "text-3xl md:text-4xl font-bold bg-linear-to-r from-primary to-primary/70 bg-clip-text text-transparent",
+          "text-3xl md:text-4xl font-bold text-gradient",
           titleClassName
         )}
       >

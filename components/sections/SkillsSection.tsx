@@ -5,6 +5,7 @@ import { SectionHeading } from '@/components/ui/section-heading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { SKILL_CATEGORIES } from '@/lib/portfolio-data';
 import { useI18n } from '@/providers/LocaleProvider';
+import Reveal from '@/components/motion/Reveal';
 
 export default function SkillsSection({
   sectionRef,
@@ -30,10 +31,10 @@ export default function SkillsSection({
         </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SKILL_CATEGORIES.map((cat) => (
+          {SKILL_CATEGORIES.map((cat, i) => (
+            <Reveal key={cat.title} delay={(i % 3) * 0.08} className="h-full">
             <Card
-              key={cat.title}
-              className="bg-card/60 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg"
+              className="glass card-hover h-full"
             >
               <CardHeader className="pb-3">
                 <CardTitle className="text-base font-bold flex items-center gap-2 text-primary">
@@ -55,6 +56,7 @@ export default function SkillsSection({
                 ))}
               </CardContent>
             </Card>
+            </Reveal>
           ))}
         </div>
       </div>

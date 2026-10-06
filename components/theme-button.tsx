@@ -1,55 +1,29 @@
 "use client"
 
-import * as React from "react"
 import { useState, useEffect } from "react"
-import Clock from "./clock/Clock"
-import { useTime } from "@/providers/TimeProvider"
-import { getHourBasedTheme } from "@/lib/theme-utils"
+import { useTheme } from "next-themes"
+import { Moon, Sun } from "lucide-react"
 
 export function ModeToggle({ className }: { className?: string }) {
-  const { currentHour, updateHour } = useTime()
-  const [isMounted, setIsMounted] = useState(false)
-  
-  // Set mounted state after hydration
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-  
-  // Create a container with consistent positioning and higher z-index
+  const { resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => setMounted(true), [])
+
+  const isDark = resolvedTheme !== "light"
+
   return (
-    <div 
-      className={`flex items-center justify-center ${className || ''}`}
-      style={{ 
-        position: 'relative', 
-        zIndex: 100,
-        pointerEvents: 'auto' // Ensure clicks register
-      }}
+    <button
+      type="button"
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className={`relative flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-card/40 text-foreground backdrop-blur-md transition-all hover:scale-105 hover:border-primary/50 hover:text-primary ${className || ""}`}
     >
-      {!isMounted ? (
-        // Loading placeholder with same dimensions as Clock
-        <div className="h-12 w-36 flex items-center justify-center bg-muted/60 backdrop-blur-sm rounded-full border border-border">
-          <div className="animate-pulse text-muted-foreground text-sm">...</div>
-        </div>
+      {mounted ? (
+        isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />
       ) : (
-        // Actual clock with consistent positioning
-        <div 
-          className="cursor-pointer"
-          onClick={(e) => {
-            // Ensure event doesn't propagate
-            e.stopPropagation();
-          }}
-        >
-          <Clock 
-            currentHour={currentHour} 
-            onHourChange={(hour) => {
-              updateHour(hour);
-              // Sử dụng tên hàm mới getHourBasedTheme thay vì getCurrentHourTheme
-              const theme = getHourBasedTheme(hour);
-              document.documentElement.setAttribute('data-theme', theme);
-            }}
-          />
-        </div>
+        <span className="h-4 w-4 animate-pulse rounded-full bg-muted-foreground/30" />
       )}
-    </div>
+    </button>
   )
 }
