@@ -18,7 +18,9 @@ import {
   FaRobot,
   FaLayerGroup,
   FaApple,
-  FaTerminal
+  FaTerminal,
+  FaBriefcase,
+  FaCheck
 } from 'react-icons/fa';
 import DynamicBackground from '@/components/background/DynamicBackground';
 import { ModeToggle } from '@/components/theme-button';
@@ -28,7 +30,7 @@ import { SectionHeading } from '@/components/ui/section-heading';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { PERSONAL_INFO, PROJECTS, SKILL_CATEGORIES, Project } from '@/lib/portfolio-data';
+import { PERSONAL_INFO, PROJECTS, SKILL_CATEGORIES, EXPERIENCE, Project } from '@/lib/portfolio-data';
 import { GuestbookEntry } from '@/lib/db';
 import KaiAiChat from '@/components/ai/KaiAiChat';
 
@@ -56,6 +58,7 @@ export default function HomePage() {
   // Section refs for scroll tracking & 3D character reaction
   const heroRef = useRef<HTMLElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
+  const experienceRef = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLElement>(null);
   const skillsRef = useRef<HTMLElement>(null);
   const guestbookRef = useRef<HTMLElement>(null);
@@ -65,6 +68,7 @@ export default function HomePage() {
     () => ({
       hero: heroRef,
       about: aboutRef,
+      experience: experienceRef,
       projects: projectsRef,
       skills: skillsRef,
       guestbook: guestbookRef,
@@ -236,6 +240,14 @@ export default function HomePage() {
             onMouseLeave={() => setHoveredElement(null)}
           >
             About
+          </a>
+          <a
+            href="#experience"
+            className="hover:text-primary transition-colors py-1"
+            onMouseEnter={() => setHoveredElement('nav-experience')}
+            onMouseLeave={() => setHoveredElement(null)}
+          >
+            Experience
           </a>
           <a
             href="#projects"
@@ -493,6 +505,97 @@ export default function HomePage() {
               <p className="text-xs text-muted-foreground leading-normal">
                 High-performance Next.js 15, React 19, TypeScript, Go/Gin microservices, and interactive 3D WebGL.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section
+        id="experience"
+        ref={experienceRef}
+        className="py-24 px-4 relative z-10"
+        onMouseEnter={() => setHoveredElement('experience')}
+        onMouseLeave={() => setHoveredElement(null)}
+      >
+        <div className="max-w-4xl mx-auto">
+          <SectionHeading title="Work Experience" />
+          <p className="text-center text-muted-foreground max-w-xl mx-auto -mt-6 mb-12 text-sm">
+            Where I&apos;ve been building — enterprise platforms in production and 50+ open-source projects on GitHub.
+          </p>
+
+          <div className="relative">
+            {/* Vertical timeline line */}
+            <div className="absolute left-4 sm:left-6 top-2 bottom-2 w-px bg-gradient-to-b from-primary/60 via-primary/30 to-transparent"></div>
+
+            <div className="space-y-8">
+              {EXPERIENCE.map((exp) => (
+                <div key={exp.id} className="relative pl-12 sm:pl-16">
+                  {/* Timeline dot */}
+                  <div className="absolute left-2.5 sm:left-4.5 top-6 w-3.5 h-3.5 rounded-full bg-background border-2 border-primary shadow-[0_0_12px] shadow-primary/50">
+                    {exp.current && (
+                      <span className="absolute inset-0 rounded-full bg-primary/40 animate-ping"></span>
+                    )}
+                  </div>
+
+                  <Card
+                    className="bg-card/70 backdrop-blur-md border-primary/20 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-xl overflow-hidden"
+                    onMouseEnter={() => setHoveredElement(`exp-${exp.id}`)}
+                    onMouseLeave={() => setHoveredElement('experience')}
+                  >
+                    <div className="p-4 bg-gradient-to-r from-primary/15 via-accent/15 to-transparent border-b border-primary/10 flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-9 h-9 rounded-lg bg-primary/15 border border-primary/25 flex items-center justify-center">
+                          <FaBriefcase className="text-sm text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-base leading-tight">{exp.role}</h3>
+                          <p className="text-xs text-primary font-medium">{exp.company}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {exp.current && (
+                          <Badge className="text-[10px] bg-emerald-500/15 text-emerald-500 border-emerald-500/30 hover:bg-emerald-500/15">
+                            Current
+                          </Badge>
+                        )}
+                        <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-primary/20 text-primary font-semibold">
+                          {exp.period}
+                        </span>
+                      </div>
+                    </div>
+
+                    <CardContent className="pt-4 pb-4">
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-4">
+                        {exp.description}
+                      </p>
+
+                      <ul className="space-y-2 mb-4">
+                        {exp.achievements.map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-xs text-foreground/85 leading-relaxed">
+                            <FaCheck className="text-[9px] text-primary mt-1 shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <span className="text-[10px] text-muted-foreground flex items-center gap-1 mr-1">
+                          <FaMapMarkerAlt className="text-[9px]" /> {exp.location}
+                        </span>
+                        {exp.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[10px] font-mono px-2 py-0.5 rounded bg-muted text-muted-foreground"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
             </div>
           </div>
         </div>
