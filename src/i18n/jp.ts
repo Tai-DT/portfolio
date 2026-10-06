@@ -67,6 +67,12 @@ const jp: Dictionary = {
           period: '2026 — 現在',
           description: '税関・倉庫管理システム向けフルスタックWebアプリケーションの開発。',
         },
+        {
+          role: 'アプリテスター・QAガイド',
+          company: 'Te2sr.com',
+          period: '2025 — 現在',
+          description: 'Google Play クローズドテスティングサービスとコミュニティガイドを運営し、開発者が 12 testers / 14 days 要件を満たしてアプリを本番公開できるよう支援。',
+        },
       ],
     },
   },

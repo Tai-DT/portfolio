@@ -67,6 +67,12 @@ const en: Dictionary = {
           period: '2026 — Present',
           description: 'Developing full-stack web applications for customs and warehouse management.',
         },
+        {
+          role: 'App Tester & QA Guide Maintainer',
+          company: 'Te2sr.com',
+          period: '2025 — Present',
+          description: 'Running a Google Play closed-testing service and community guide helping developers satisfy the 12 testers / 14 days requirement and ship apps to production.',
+        },
       ],
     },
   },

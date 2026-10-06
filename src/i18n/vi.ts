@@ -67,6 +67,12 @@ const vi: Dictionary = {
           period: '2026 — Hiện tại',
           description: 'Phát triển ứng dụng web full-stack cho hệ thống quản lý hải quan và kho.',
         },
+        {
+          role: 'App Tester & QA Guide',
+          company: 'Te2sr.com',
+          period: '2025 — Hiện tại',
+          description: 'Vận hành dịch vụ closed-testing Google Play và hướng dẫn cộng đồng, giúp lập trình viên đạt yêu cầu 12 testers / 14 ngày và đưa app lên production.',
+        },
       ],
     },
   },
