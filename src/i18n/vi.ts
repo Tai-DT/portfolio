@@ -33,6 +33,7 @@ const vi: Dictionary = {
     downloadCV: 'Tải CV',
     edgeHosted: 'Chạy trên Cloudflare Edge tại {domain}',
     scrollToAbout: 'Cuộn xuống phần Giới Thiệu',
+    highlights: ['38+ repo trên GitHub', '3+ năm kinh nghiệm', 'AI Agents & MCP', 'EN · VI · JA'],
   },
   about: {
     title: 'Giới Thiệu',
@@ -42,8 +43,8 @@ const vi: Dictionary = {
     ],
     stats: {
       repos: 'Repo công khai',
-      edge: 'Cloudflare Native',
-      platform: 'Đa nền tảng',
+      edge: 'Dự án đã ship',
+      platform: 'Năm kinh nghiệm',
     },
     pillars: {
       ai: {
@@ -94,6 +95,7 @@ const vi: Dictionary = {
     },
     sourceCode: 'Mã Nguồn',
     visitDemo: 'Xem Demo',
+    featured: 'Nổi bật',
   },
   skills: {
     title: 'Kỹ Năng Kỹ Thuật',

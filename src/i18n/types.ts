@@ -44,6 +44,7 @@ export interface Dictionary {
     downloadCV: string;
     edgeHosted: string;
     scrollToAbout: string;
+    highlights: string[];
   };
   about: {
     title: string;
@@ -77,6 +78,7 @@ export interface Dictionary {
     };
     sourceCode: string;
     visitDemo: string;
+    featured: string;
   };
   skills: {
     title: string;

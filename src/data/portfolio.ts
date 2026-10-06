@@ -141,6 +141,12 @@ export const PROJECTS: Project[] = [
   }
 ];
 
+export const STACK_MARQUEE: string[] = [
+  'TypeScript', 'Go', 'Swift', 'SwiftUI', 'Model Context Protocol', 'AI Agents',
+  'Cloudflare Workers', 'Cloudflare D1', 'Workers AI', 'Astro', 'Next.js', 'React 19',
+  'React Native', 'Kotlin / Android', 'Tailwind CSS', 'Three.js', 'Docker', 'PostgreSQL',
+];
+
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: 'AI & Agentic Engineering',

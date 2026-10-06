@@ -41,6 +41,14 @@ const edgeHosted = dict.hero.edgeHosted.replace('{domain}', PERSONAL_INFO.domain
         {dict.hero.bio}
       </p>
 
+      <div data-reveal style="--reveal-delay:300ms" class="mt-6 flex flex-wrap gap-2">
+        {dict.hero.highlights.map((h) => (
+          <span class="glass rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-wide text-foreground/85">
+            {h}
+          </span>
+        ))}
+      </div>
+
       <div data-reveal style="--reveal-delay:360ms" class="mt-9 flex flex-wrap items-center gap-3">
         <a href="#projects" class="btn-gradient rounded-xl px-6 py-3 text-sm font-semibold">
           {dict.hero.viewWork}

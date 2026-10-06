@@ -33,6 +33,7 @@ const en: Dictionary = {
     downloadCV: 'Download CV',
     edgeHosted: 'Edge hosted on {domain}',
     scrollToAbout: 'Scroll to About section',
+    highlights: ['38+ GitHub repos', '3+ years shipping', 'AI Agents & MCP', 'EN · VI · JA'],
   },
   about: {
     title: 'About Me',
@@ -41,9 +42,9 @@ const en: Dictionary = {
       'Currently building open-source developer tooling, AI coding agent workflows, and scalable edge applications running on Cloudflare Workers and D1 databases.',
     ],
     stats: {
-      repos: 'Public Repositories',
-      edge: 'Cloudflare Native',
-      platform: 'Multi-Platform',
+      repos: 'Public Repos',
+      edge: 'Projects Shipped',
+      platform: 'Years Building',
     },
     pillars: {
       ai: {
@@ -94,6 +95,7 @@ const en: Dictionary = {
     },
     sourceCode: 'Source Code',
     visitDemo: 'Visit Demo',
+    featured: 'Featured',
   },
   skills: {
     title: 'Technical Arsenal',

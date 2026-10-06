@@ -1,6 +1,6 @@
 ---
 import type { Dictionary } from '../i18n/types';
-import { PERSONAL_INFO } from '../data/portfolio';
+import { PERSONAL_INFO, PROJECTS } from '../data/portfolio';
 import SectionHeading from './SectionHeading.astro';
 
 interface Props {
@@ -15,9 +15,9 @@ const pillars = [
   { key: 'web', ...dict.about.pillars.web },
 ];
 const stats = [
-  { value: PERSONAL_INFO.stats.publicRepos, label: dict.about.stats.repos },
-  { value: PERSONAL_INFO.stats.experienceYears, label: dict.about.stats.platform },
-  { value: 'Edge', label: dict.about.stats.edge },
+  { n: parseInt(PERSONAL_INFO.stats.publicRepos), suffix: '+', label: dict.about.stats.repos },
+  { n: parseInt(PERSONAL_INFO.stats.experienceYears), suffix: '+', label: dict.about.stats.platform },
+  { n: PROJECTS.length, suffix: '', label: dict.about.stats.edge },
 ];
 const icons: Record<string, string> = {
   ai: 'M12 8V4m0 0H8m4 0h4m-4 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 12v-4m-6-2 1.5 1.5M18 14l-1.5 1.5',
@@ -54,7 +54,7 @@ const icons: Record<string, string> = {
       <div data-reveal style="--reveal-delay:240ms" class="mt-8 grid grid-cols-3 gap-3">
         {stats.map((s) => (
           <div class="glass rounded-2xl p-4 text-center">
-            <p class="text-gradient text-2xl font-black">{s.value}</p>
+            <p class="text-gradient text-2xl font-black" data-count={s.n} data-suffix={s.suffix}>0{s.suffix}</p>
             <p class="mt-1 text-xs text-muted-foreground">{s.label}</p>
           </div>
         ))}

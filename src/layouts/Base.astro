@@ -155,6 +155,30 @@ const jsonLd = {
           );
           document.querySelectorAll('[data-reveal]:not(.revealed)').forEach((el) => io.observe(el));
 
+          // Count-up stats
+          const cu = new IntersectionObserver(
+            (entries) => {
+              for (const e of entries) {
+                if (!e.isIntersecting) continue;
+                cu.unobserve(e.target);
+                const el = e.target;
+                const target = parseFloat(el.getAttribute('data-count') || '0');
+                const suffix = el.getAttribute('data-suffix') || '';
+                const t0 = performance.now();
+                const dur = 1200;
+                const step = (n) => {
+                  const p = Math.min(1, (n - t0) / dur);
+                  const eased = 1 - Math.pow(1 - p, 3);
+                  el.textContent = String(Math.round(target * eased)) + suffix;
+                  if (p < 1) requestAnimationFrame(step);
+                };
+                requestAnimationFrame(step);
+              }
+            },
+            { threshold: 0.5 }
+          );
+          document.querySelectorAll('[data-count]').forEach((el) => cu.observe(el));
+
           // Mobile nav
           const menuBtn = document.querySelector('[data-mobile-menu-btn]');
           const menuPanel = document.querySelector('[data-mobile-menu]');
