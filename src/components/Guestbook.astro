@@ -1,0 +1,18 @@
+---
+import type { Dictionary } from '../i18n/types';
+import SectionHeading from './SectionHeading.astro';
+import GuestbookApp from './react/GuestbookApp';
+
+interface Props {
+  dict: Dictionary;
+}
+const { dict } = Astro.props;
+const subtitle = `${dict.guestbook.subtitlePre}${dict.guestbook.subtitleDb}${dict.guestbook.subtitlePost}`;
+---
+
+<section id="guestbook" class="relative mx-auto max-w-5xl scroll-mt-24 px-6 py-24">
+  <SectionHeading title={dict.guestbook.title} subtitle={subtitle} />
+  <div data-reveal>
+    <GuestbookApp client:load dict={dict.guestbook} />
+  </div>
+</section>

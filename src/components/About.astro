@@ -1,0 +1,89 @@
+---
+import type { Dictionary } from '../i18n/types';
+import { PERSONAL_INFO, PROJECTS } from '../data/portfolio';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  dict: Dictionary;
+}
+const { dict } = Astro.props;
+
+const pillars = [
+  { key: 'ai', ...dict.about.pillars.ai },
+  { key: 'cloud', ...dict.about.pillars.cloud },
+  { key: 'mobile', ...dict.about.pillars.mobile },
+  { key: 'web', ...dict.about.pillars.web },
+];
+const stats = [
+  { n: parseInt(PERSONAL_INFO.stats.publicRepos), suffix: '+', label: dict.about.stats.repos },
+  { n: parseInt(PERSONAL_INFO.stats.experienceYears), suffix: '+', label: dict.about.stats.platform },
+  { n: PROJECTS.length, suffix: '', label: dict.about.stats.edge },
+];
+const icons: Record<string, string> = {
+  ai: 'M12 8V4m0 0H8m4 0h4m-4 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 12v-4m-6-2 1.5 1.5M18 14l-1.5 1.5',
+  cloud: 'M17.5 19a4.5 4.5 0 1 0-.42-8.98 6 6 0 1 0-11.06 3.3A3.5 3.5 0 0 0 7.5 19h10Z',
+  mobile: 'M8 2h8a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Zm4 16h.01',
+  web: 'm8 6-6 6 6 6m8-12 6 6-6 6M14 4l-4 16',
+};
+---
+
+<section id="about" class="relative mx-auto max-w-5xl scroll-mt-24 px-6 py-24">
+  <SectionHeading title={dict.about.title} />
+
+  <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+    <div>
+      <div data-reveal class="glass card-hover mb-7 flex items-center gap-5 rounded-2xl p-5">
+        <img
+          src={PERSONAL_INFO.avatarUrl}
+          alt={PERSONAL_INFO.fullName}
+          width={160}
+          height={160}
+          loading="lazy"
+          class="h-20 w-20 shrink-0 rounded-2xl border border-aurora-1/40 object-cover"
+        />
+        <div class="min-w-0">
+          <p class="font-bold">{PERSONAL_INFO.fullName}</p>
+          <p class="text-sm text-muted-foreground">{PERSONAL_INFO.role}</p>
+          <p class="mt-1 text-xs text-muted-foreground/70">{PERSONAL_INFO.location}</p>
+        </div>
+      </div>
+      {dict.about.bio.map((p, i) => (
+        <p data-reveal style={`--reveal-delay:${i * 120}ms`} class="mb-4 leading-relaxed text-muted-foreground">{p}</p>
+      ))}
+
+      <div data-reveal style="--reveal-delay:240ms" class="mt-8 grid grid-cols-3 gap-3">
+        {stats.map((s) => (
+          <div class="glass rounded-2xl p-4 text-center">
+            <p class="text-gradient text-2xl font-bold" data-count={s.n} data-suffix={s.suffix}>0{s.suffix}</p>
+            <p class="mt-1 text-xs text-muted-foreground">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+      {pillars.map((p, i) => (
+        <div data-reveal style={`--reveal-delay:${i * 100}ms`} class="glass card-hover rounded-2xl p-5">
+          <div class="btn-gradient mb-3 flex h-10 w-10 items-center justify-center rounded-xl">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d={icons[p.key]} /></svg>
+          </div>
+          <h3 class="font-semibold">{p.title}</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <h3 data-reveal class="mt-16 text-xl font-bold">{dict.about.experience.title}</h3>
+  <div class="mt-6 space-y-4">
+    {dict.about.experience.items.map((item, i) => (
+      <div data-reveal style={`--reveal-delay:${i * 100}ms`} class="glass card-hover rounded-2xl p-5">
+        <div class="flex flex-wrap items-baseline justify-between gap-2">
+          <h4 class="font-semibold">{item.role} <span class="text-muted-foreground">· {item.company}</span></h4>
+          <span class="font-mono text-xs text-muted-foreground">{item.period}</span>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+      </div>
+    ))}
+  </div>
+</section>

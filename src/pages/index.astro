@@ -1,0 +1,8 @@
+---
+import { negotiateLocale } from '../i18n';
+
+export const prerender = false;
+
+const locale = negotiateLocale(Astro.request.headers.get('accept-language'));
+return Astro.redirect(`/${locale}`);
+---

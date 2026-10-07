@@ -1,0 +1,56 @@
+---
+import type { Dictionary } from '../i18n/types';
+import { PERSONAL_INFO } from '../data/portfolio';
+import SectionHeading from './SectionHeading.astro';
+import ContactForm from './react/ContactForm';
+
+interface Props {
+  dict: Dictionary;
+}
+const { dict } = Astro.props;
+
+const items = [
+  { label: dict.contact.email, value: PERSONAL_INFO.email, href: `mailto:${PERSONAL_INFO.email}` },
+  { label: dict.contact.github, value: 'github.com/Tai-DT', href: PERSONAL_INFO.github },
+  { label: dict.contact.location, value: PERSONAL_INFO.location.replace(' 🇻🇳', ''), href: undefined },
+  { label: dict.contact.domain, value: PERSONAL_INFO.domain, href: `https://${PERSONAL_INFO.domain}` },
+];
+---
+
+<section id="contact" class="relative mx-auto max-w-5xl scroll-mt-24 px-6 py-24">
+  <SectionHeading title={dict.contact.title} subtitle={dict.contact.subtitle} />
+
+  <div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+    <div data-reveal class="glass card-hover rounded-2xl p-6">
+      <h3 class="font-semibold">{dict.contact.infoTitle}</h3>
+      <p class="mt-1 text-sm text-muted-foreground">{dict.contact.infoDesc}</p>
+      <ul class="mt-6 space-y-4">
+        {items.map((item) => (
+          <li>
+            <p class="text-xs uppercase tracking-wider text-muted-foreground">{item.label}</p>
+            {item.href ? (
+              <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" class="mt-0.5 inline-block font-medium text-aurora-2 transition-colors hover:text-aurora-1">
+                {item.value}
+              </a>
+            ) : (
+              <p class="mt-0.5 font-medium">{item.value}</p>
+            )}
+          </li>
+        ))}
+      </ul>
+      <p class="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-aurora-2 opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-aurora-2"></span>
+        </span>
+        {dict.contact.fastResponse}
+      </p>
+    </div>
+
+    <div data-reveal style="--reveal-delay:120ms" class="glass card-hover rounded-2xl p-6">
+      <h3 class="font-semibold">{dict.contact.formTitle}</h3>
+      <p class="mt-1 text-sm text-muted-foreground">{dict.contact.formDesc}</p>
+      <ContactForm client:load dict={dict.contact} />
+    </div>
+  </div>
+</section>

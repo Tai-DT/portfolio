@@ -1,0 +1,17 @@
+---
+import type { Dictionary } from '../i18n/types';
+import { PERSONAL_INFO } from '../data/portfolio';
+
+interface Props {
+  dict: Dictionary;
+}
+const { dict } = Astro.props;
+const tagline = dict.footer.tagline.replace('{name}', PERSONAL_INFO.fullName);
+---
+
+<footer class="relative mx-auto max-w-5xl px-6 pb-10">
+  <div class="glass rounded-2xl px-6 py-6 text-center">
+    <p class="text-sm text-muted-foreground">{tagline}</p>
+    <p class="mt-2 font-mono text-xs text-muted-foreground/60">Astro · React · Cloudflare Workers · D1 · Workers AI · Three.js</p>
+  </div>
+</footer>

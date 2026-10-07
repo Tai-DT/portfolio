@@ -5,9 +5,9 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
-  "main": ".open-next/worker.js",
+  "main": "./dist/_worker.js/index.js",
   "assets": {
-    "directory": ".open-next/assets",
+    "directory": "./dist",
     "binding": "ASSETS"
   },
   "d1_databases": [
@@ -27,6 +27,10 @@
   "ai": {
     "binding": "AI"
   },
+  "routes": [
+    { "pattern": "taido.dev", "custom_domain": true },
+    { "pattern": "www.taido.dev", "custom_domain": true }
+  ],
   "vars": {
     "SITE_DOMAIN": "taido.dev",
     "OWNER_NAME": "Tài Đỗ (Kai)",

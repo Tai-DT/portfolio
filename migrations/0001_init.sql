@@ -37,4 +37,4 @@ CREATE TABLE IF NOT EXISTS page_views (
 INSERT INTO guestbook_entries (name, message, avatar_url, created_at) 
 VALUES 
   ('Cloudflare Edge Worker', 'Welcome to taido.dev! Serving at the edge with Cloudflare Workers & Cloudflare D1 SQL database.', 'https://avatars.githubusercontent.com/u/314135?s=200&v=4', datetime('now', '-2 hours')),
-  ('Alex Rivers', 'Incredible 3D bumblebee companion and seamless time-based themes! Great work on Archify MCP.', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80', datetime('now', '-1 day'));
+  ('Alex Rivers', 'Impressive constellation hero and silky locale switching! Great work on Archify MCP.', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80', datetime('now', '-1 day'));

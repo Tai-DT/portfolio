@@ -1,0 +1,173 @@
+import type { Dictionary } from './types';
+
+const jp: Dictionary = {
+  meta: {
+    title: 'Tài Đỗ (Kai) — フルスタック開発者・AIシステムエンジニア',
+    description:
+      'ホーチミン市在住のフルスタック開発者・AIエンジニア、Tài Đỗ (Kai) のポートフォリオ。MCPサーバー、AIエージェント、Cloudflareエッジアプリ、macOS/モバイルネイティブ開発。',
+  },
+  language: {
+    label: '言語',
+    en: 'English',
+    vi: 'Tiếng Việt',
+    jp: '日本語',
+  },
+  a11y: {
+    skip: 'コンテンツへスキップ',
+    menu: 'メニューを開く',
+    closeMenu: 'メニューを閉じる',
+  },
+  nav: {
+    about: 'プロフィール',
+    projects: 'プロジェクト',
+    skills: 'スキル',
+    guestbook: 'ゲストブック',
+    contact: 'お問い合わせ',
+  },
+  hero: {
+    status: 'AI・フルスタック案件受付中',
+    greeting: 'こんにちは、{name}です',
+    bio: '高性能MCPサーバー、自律型AIエージェント、モダンなWebプラットフォーム、macOS/モバイルネイティブアプリの開発に情熱を持つフルスタック開発者・AIエンジニアです。',
+    viewWork: '注目プロジェクトを見る',
+    getInTouch: 'お問い合わせ',
+    downloadCV: '履歴書をダウンロード',
+    edgeHosted: '{domain} でEdgeホスティング中',
+    scrollToAbout: 'プロフィールへスクロール',
+    highlights: ['38+ GitHubリポジトリ', '5年以上の経験', 'AIエージェント & MCP', 'EN · VI · JA'],
+  },
+  about: {
+    title: '私について',
+    bio: [
+      'フルスタックのクラウドネイティブアプリケーションとインテリジェントエージェントシステムの構築を専門としています。Model Context Protocol (MCP)、Goの高スループットバックエンド、最新のNext.js/Reactフロントエンド、macOS & iOS向けネイティブSwift/SwiftUIまで幅広い実務経験を持ち、高度な技術アーキテクチャと優れたユーザー体験の融合を得意としています。',
+      '現在はオープンソースの開発者ツール、AIコーディングエージェントワークフロー、Cloudflare WorkersとD1データベース上で動くスケーラブルなエッジアプリケーションを開発しています。',
+    ],
+    stats: {
+      repos: '公開リポジトリ',
+      edge: 'リリース済みプロジェクト',
+      platform: '経験年数',
+    },
+    pillars: {
+      ai: {
+        title: 'AIエージェント & MCP',
+        desc: 'カスタムModel Context Protocolサーバー、LLMオーケストレーション、自律的な開発者ワークフローの構築。',
+      },
+      cloud: {
+        title: 'Cloudflare D1 & Edge',
+        desc: 'Cloudflare Workers・Pages・分散SQL D1によるミリ秒以下のサーバーレス実行。',
+      },
+      mobile: {
+        title: 'macOS & モバイル',
+        desc: 'Swift/SwiftUIによるAppleネイティブユーティリティとReact Nativeによるクロスプラットフォームアプリ。',
+      },
+      web: {
+        title: 'フルスタックWeb',
+        desc: '高性能なNext.js 15・React 19・TypeScript、Go/Ginマイクロサービス、インタラクティブ3D WebGL。',
+      },
+    },
+    experience: {
+      title: '職歴',
+      items: [
+        {
+          role: 'フルスタック開発者',
+          company: 'VVMV',
+          period: '2026 — 現在',
+          description: '税関・倉庫管理システム向けフルスタックWebアプリケーションの開発。',
+        },
+        {
+          role: 'アプリテスター・QAガイド',
+          company: 'Te2sr.com',
+          period: '2025 — 現在',
+          description: 'Google Play クローズドテスティングサービスとコミュニティガイドを運営し、開発者が 12 testers / 14 days 要件を満たしてアプリを本番公開できるよう支援。',
+        },
+      ],
+    },
+  },
+  projects: {
+    title: '注目プロジェクト',
+    subtitlePre: '私のGitHubリポジトリ（',
+    subtitlePost: '）にある実際のプロジェクト。AIエージェントツール、macOSネイティブユーティリティ、フルスタックプラットフォームを網羅。',
+    categories: {
+      all: 'すべて',
+      ai: 'AI & MCP',
+      web: 'フルスタックWeb',
+      mobile: 'モバイル & ネイティブ',
+      tools: '開発ツール',
+    },
+    sourceCode: 'ソースコード',
+    visitDemo: 'デモを見る',
+    featured: '注目',
+  },
+  skills: {
+    title: '技術スタック',
+    subtitle: '実稼働・オープンソースプロジェクトで使っている技術、フレームワーク、エンジニアリング手法。',
+  },
+  guestbook: {
+    title: 'Cloudflare D1 ゲストブック',
+    subtitlePre: 'メッセージをどうぞ！投稿はエッジの ',
+    subtitleDb: 'Cloudflare D1 SQL Database',
+    subtitlePost: ' に直接保存されます。',
+    signTitle: 'ゲストブックに署名',
+    signDesc: 'Cloudflare D1に保存される永続的なエッジレコード',
+    nameLabel: 'お名前',
+    namePlaceholder: '例：サトシ',
+    messageLabel: 'メッセージ',
+    messagePlaceholder: 'コメントや挨拶をどうぞ...',
+    submit: '署名する',
+    submitting: 'D1に保存中...',
+    recent: '最近のメッセージ',
+    connected: 'D1接続済み',
+    connecting: 'Cloudflare D1に接続中...',
+    empty: 'まだメッセージがありません。最初の投稿者になりましょう！',
+    toastEmpty: 'お名前と短いメッセージを入力してください。',
+    toastSuccess: 'メッセージがCloudflare D1ゲストブックに追加されました！',
+    toastError: 'ゲストブックの投稿に失敗しました。',
+    toastNetwork: 'ゲストブック投稿時にネットワークエラーが発生しました。',
+  },
+  contact: {
+    title: 'お問い合わせ',
+    subtitle: 'プロジェクトのご相談、AIツールのコラボ、エッジ規模のエンジニアリングなど、下のフォームからメッセージをどうぞ。',
+    infoTitle: '連絡先',
+    infoDesc: 'メールとGitHubでいつでも連絡可能',
+    email: 'メール',
+    github: 'GitHub',
+    location: '所在地',
+    domain: '本番ドメイン',
+    fastResponse: '24時間以内に迅速に返信します',
+    formTitle: '直接メッセージを送る',
+    formDesc: '送信内容はCloudflare D1にルーティング・保存されます',
+    nameLabel: 'お名前',
+    namePlaceholder: '山田 太郎',
+    emailLabel: 'メールアドレス',
+    emailPlaceholder: 'you@company.com',
+    subjectLabel: '件名',
+    subjectPlaceholder: 'MCPツール / フルスタック案件 / 一般問い合わせ',
+    messageLabel: 'メッセージ',
+    messagePlaceholder: 'プロジェクト、スケジュール、アイデアについて教えてください...',
+    send: '送信',
+    sending: 'Cloudflare D1に保存中...',
+    toastEmpty: '必須項目をすべて入力してください。',
+    toastSuccess: 'メッセージを送信しました！Cloudflare D1に保存されました。',
+    toastError: 'メッセージの送信に失敗しました。',
+    toastNetwork: 'ネットワークエラー。再度お試しいただくか、直接メールでご連絡ください。',
+  },
+  kai: {
+    ask: 'Kai AIに聞く',
+    greeting:
+      'こんにちは！Kai AIです。Tài Đỗ (Kai) のバーチャルアシスタントとして、Cloudflare Workers AI (Llama 3.1) がEdgeで直接動作しています。TàiのMCP、フルスタックプロジェクト、スキルについてお聞きください！',
+    thinking: 'Kai AIがCloudflare Workers AIで考えています...',
+    placeholder: 'Tàiのプロジェクトやスキルについて何でも聞いてください...',
+    errorApi: '申し訳ありません。現在Cloudflare Workers AIに接続できません。後でもう一度お試しください！',
+    errorNetwork: 'Cloudflare Workers AI呼び出し時にネットワークエラーが発生しました。もう一度お試しください！',
+    quickPrompts: [
+      'Tàiの一番の注目プロジェクトは？',
+      'TàiはModel Context Protocol (MCP) で何をしている？',
+      'このサイトのCloudflare D1 & R2アーキテクチャは？',
+      '面接やコラボの連絡方法は？',
+    ],
+  },
+  footer: {
+    tagline: '{name} がデザイン・開発。Cloudflare Workers (Astro • D1 • R2 • Workers AI) にエッジデプロイ。',
+  },
+};
+
+export default jp;
