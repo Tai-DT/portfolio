@@ -27,13 +27,13 @@ const edgeHosted = dict.hero.edgeHosted.replace('{domain}', PERSONAL_INFO.domain
           class="h-7 w-7 rounded-full border border-aurora-1/40 object-cover"
         />
         <span class="relative flex h-2 w-2">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-aurora-2 opacity-75"></span>
-          <span class="relative inline-flex h-2 w-2 rounded-full bg-aurora-2"></span>
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-aurora-1 opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-aurora-1"></span>
         </span>
         {dict.hero.status}
       </p>
 
-      <h1 data-reveal style="--reveal-delay:120ms" class="text-gradient mt-6 text-5xl font-black leading-[1.05] tracking-tight sm:text-7xl">
+      <h1 data-reveal style="--reveal-delay:120ms" class="text-gradient mt-6 text-5xl font-bold leading-[1.05] tracking-tight sm:text-7xl">
         {greeting}
       </h1>
 
@@ -43,7 +43,7 @@ const edgeHosted = dict.hero.edgeHosted.replace('{domain}', PERSONAL_INFO.domain
 
       <div data-reveal style="--reveal-delay:300ms" class="mt-6 flex flex-wrap gap-2">
         {dict.hero.highlights.map((h) => (
-          <span class="glass rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-wide text-foreground/85">
+          <span class="glass rounded px-3.5 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-foreground/85">
             {h}
           </span>
         ))}

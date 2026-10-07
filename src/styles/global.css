@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Space Grotesk", "Hiragino Sans", "Noto Sans JP", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -20,8 +25,35 @@
   --color-aurora-3: var(--aurora-3);
 }
 
-/* ---------- Light (default): Pantone 2026 "Cloud Dancer" + iOS Liquid Glass ---------- */
+/* ---------- Dark (default): Stitch "Hyper-Spatial Intelligence" — high-tech AI ---------- */
 :root {
+  color-scheme: dark;
+  --background: #070913;
+  --foreground: #e6e8f5;
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --primary: #00dfc1;
+  --primary-foreground: #070913;
+  --secondary: #1e293b;
+  --secondary-foreground: #e1e1f1;
+  --muted: #121829;
+  --muted-foreground: #94a3b8;
+  --accent: #1e293b;
+  --accent-foreground: #e1e1f1;
+  --border: rgba(255, 255, 255, 0.08);
+  --ring: #00f5d4;
+  --aurora-1: #00f5d4;  /* luminous cyan */
+  --aurora-2: #3b82f6;  /* electric blue */
+  --aurora-3: #a855f7;  /* kinetic violet */
+  --aurora-opacity: 0.3;
+  --glass-bg: rgba(15, 23, 42, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.07);
+  --glass-highlight: rgba(255, 255, 255, 0.12);
+  --glass-shadow: rgba(0, 0, 0, 0.65);
+}
+
+/* ---------- Light: "Cloud Dancer" glass (opt-in via .light) ---------- */
+html.light {
   color-scheme: light;
   --background: oklch(0.965 0.008 255);
   --foreground: oklch(0.27 0.045 265);
@@ -37,41 +69,14 @@
   --accent-foreground: oklch(0.32 0.05 265);
   --border: oklch(0.88 0.015 255);
   --ring: oklch(0.55 0.2 258);
-  --aurora-1: oklch(0.56 0.2 258);   /* iOS system blue */
-  --aurora-2: oklch(0.78 0.11 218);  /* iOS cyan */
-  --aurora-3: oklch(0.5 0.19 275);   /* iOS indigo */
-  --aurora-opacity: 0.32;
-  --glass-bg: color-mix(in oklch, white 52%, transparent);
+  --aurora-1: #0891b2;  /* cyan-600 */
+  --aurora-2: #3b82f6;  /* blue-500 */
+  --aurora-3: #8b5cf6;  /* violet-500 */
+  --aurora-opacity: 0.28;
+  --glass-bg: color-mix(in oklch, white 55%, transparent);
   --glass-border: color-mix(in oklch, white 75%, transparent);
   --glass-highlight: color-mix(in oklch, white 85%, transparent);
   --glass-shadow: color-mix(in oklch, oklch(0.4 0.08 265) 14%, transparent);
-}
-
-/* ---------- Dark: midnight glass ---------- */
-html.dark {
-  color-scheme: dark;
-  --background: oklch(0.15 0.025 265);
-  --foreground: oklch(0.95 0.012 255);
-  --card: oklch(0.19 0.03 265);
-  --card-foreground: oklch(0.95 0.012 255);
-  --primary: oklch(0.62 0.19 255);
-  --primary-foreground: oklch(0.98 0.005 255);
-  --secondary: oklch(0.22 0.035 265);
-  --secondary-foreground: oklch(0.9 0.015 255);
-  --muted: oklch(0.22 0.035 265);
-  --muted-foreground: oklch(0.66 0.035 260);
-  --accent: oklch(0.25 0.04 265);
-  --accent-foreground: oklch(0.93 0.015 255);
-  --border: oklch(0.28 0.035 265);
-  --ring: oklch(0.62 0.19 255);
-  --aurora-1: oklch(0.68 0.17 255);
-  --aurora-2: oklch(0.82 0.1 215);
-  --aurora-3: oklch(0.62 0.18 275);
-  --aurora-opacity: 0.5;
-  --glass-bg: color-mix(in oklch, var(--card) 58%, transparent);
-  --glass-border: color-mix(in oklch, var(--foreground) 12%, transparent);
-  --glass-highlight: color-mix(in oklch, white 12%, transparent);
-  --glass-shadow: color-mix(in oklch, black 30%, transparent);
 }
 
 html {
@@ -81,8 +86,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Inter", "Hiragino Sans", "Noto Sans JP", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -137,14 +141,21 @@ body {
   from { transform: translate3d(0, 0, 0) rotate(0deg); }
   to { transform: translate3d(8vmax, -10vmax, 0) rotate(25deg); }
 }
+/* Perspective grid floor — vanishing-point depth per Stitch spec (48px cells, blue) */
 .aurora-grid {
   position: absolute;
-  inset: 0;
+  left: -30%;
+  right: -30%;
+  bottom: -18%;
+  height: 72%;
   background-image:
-    linear-gradient(to right, color-mix(in oklch, var(--foreground) 4%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklch, var(--foreground) 4%, transparent) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 30%, transparent 75%);
+    linear-gradient(to right, color-mix(in oklch, var(--aurora-2) 16%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--aurora-2) 16%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform: perspective(700px) rotateX(62deg);
+  transform-origin: center top;
+  mask-image: linear-gradient(to bottom, transparent 2%, black 38%, black 78%, transparent 98%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 2%, black 38%, black 78%, transparent 98%);
 }
 .aurora-vignette {
   position: absolute;
@@ -156,35 +167,42 @@ body {
 .glass {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(20px) saturate(1.6);
-  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
   box-shadow:
     inset 0 1px 0 0 var(--glass-highlight),
-    0 10px 30px -14px var(--glass-shadow);
+    inset 0 0 16px 0 color-mix(in oklch, var(--aurora-1) 3%, transparent),
+    0 8px 32px -4px var(--glass-shadow);
 }
 .text-gradient {
-  background: linear-gradient(120deg, var(--aurora-1), var(--aurora-3) 45%, var(--aurora-2));
+  background: linear-gradient(120deg, var(--aurora-1), var(--aurora-2) 50%, var(--aurora-3));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .btn-gradient {
-  background: linear-gradient(120deg, var(--aurora-1), var(--aurora-3) 55%, var(--aurora-2));
-  color: white;
+  background: linear-gradient(135deg, var(--aurora-1) 0%, var(--aurora-2) 100%);
+  color: #070913;
+  font-weight: 600;
+  box-shadow: 0 0 16px color-mix(in oklch, var(--aurora-1) 35%, transparent);
   transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }
 .btn-gradient:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.08);
-  box-shadow: 0 12px 32px -8px color-mix(in oklch, var(--aurora-1) 55%, transparent);
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 28px color-mix(in oklch, var(--aurora-1) 50%, transparent),
+    0 12px 32px -8px color-mix(in oklch, var(--aurora-1) 45%, transparent);
 }
 .card-hover {
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease,
     border-color 0.35s ease;
 }
 .card-hover:hover {
-  border-color: color-mix(in oklch, var(--aurora-1) 45%, transparent);
-  box-shadow: 0 20px 50px -18px color-mix(in oklch, var(--aurora-1) 40%, transparent);
+  border-color: color-mix(in oklch, var(--aurora-1) 40%, transparent);
+  box-shadow:
+    inset 0 1px 0 0 var(--glass-highlight),
+    0 0 24px -2px color-mix(in oklch, var(--aurora-1) 22%, transparent),
+    0 12px 40px var(--glass-shadow);
 }
 
 /* ---------- Scroll reveal ---------- */

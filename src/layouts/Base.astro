@@ -91,18 +91,24 @@ const jsonLd = {
     <meta name="twitter:title" content={meta.title} />
     <meta name="twitter:description" content={meta.description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101a2b" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#070913" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef1f6" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>
       (() => {
         try {
           const t = localStorage.getItem('portfolio-theme');
-          if (t === 'dark') document.documentElement.classList.add('dark');
+          if (t === 'light') document.documentElement.classList.add('light');
         } catch {}
       })();
     </script>
@@ -126,17 +132,24 @@ const jsonLd = {
     <script is:inline>
       (() => {
         const init = () => {
+          // Sync theme icons with current mode (dark-first: sun = click for light)
+          const isLight = document.documentElement.classList.contains('light');
+          document.querySelectorAll('[data-icon-sun], [data-icon-moon]').forEach((el) => {
+            const isSun = el.dataset.iconSun !== undefined;
+            el.classList.toggle('hidden', isSun ? isLight : !isLight);
+          });
+
           // Theme toggle
           document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
             if (btn.dataset.bound) return;
             btn.dataset.bound = '1';
             btn.addEventListener('click', () => {
               const html = document.documentElement;
-              const dark = html.classList.toggle('dark');
-              try { localStorage.setItem('portfolio-theme', dark ? 'dark' : 'light'); } catch {}
+              const light = html.classList.toggle('light');
+              try { localStorage.setItem('portfolio-theme', light ? 'light' : 'dark'); } catch {}
               document.querySelectorAll('[data-icon-sun], [data-icon-moon]').forEach((el) => {
                 const isSun = el.dataset.iconSun !== undefined;
-                el.classList.toggle('hidden', isSun ? !dark : dark);
+                el.classList.toggle('hidden', isSun ? light : !light);
               });
             });
           });

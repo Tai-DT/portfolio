@@ -18,7 +18,7 @@ const { fullName, role, domain } = Astro.props;
       height={96}
       class="intro-logo h-24 w-24 rounded-3xl shadow-2xl"
     />
-    <div class="intro-name text-gradient text-3xl font-black tracking-tight sm:text-4xl">{fullName}</div>
+    <div class="intro-name text-gradient text-3xl font-bold tracking-tight sm:text-4xl">{fullName}</div>
     <p class="intro-role text-sm tracking-wide text-muted-foreground">{role}</p>
     <div class="intro-bar mt-2 h-0.5 w-52 rounded-full bg-gradient-to-r from-aurora-1 via-aurora-3 to-aurora-2"></div>
     <p class="intro-role font-mono text-xs tracking-widest text-muted-foreground/60">{domain}</p>

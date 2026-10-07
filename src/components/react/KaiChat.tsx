@@ -70,7 +70,7 @@ export default function KaiChat({ dict }: { dict: KaiDict }) {
       {open && (
         <div className="glass fixed bottom-24 right-5 z-50 flex w-[min(92vw,380px)] flex-col overflow-hidden rounded-2xl shadow-2xl">
           <div className="flex items-center gap-2.5 border-b border-border px-4 py-3">
-            <span className="btn-gradient flex h-8 w-8 items-center justify-center rounded-lg text-xs font-black">K</span>
+            <span className="btn-gradient flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold">K</span>
             <div>
               <p className="text-sm font-semibold">Kai AI</p>
               <p className="text-[11px] text-muted-foreground">Cloudflare Workers AI · Llama 3.1</p>

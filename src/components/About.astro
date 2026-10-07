@@ -54,7 +54,7 @@ const icons: Record<string, string> = {
       <div data-reveal style="--reveal-delay:240ms" class="mt-8 grid grid-cols-3 gap-3">
         {stats.map((s) => (
           <div class="glass rounded-2xl p-4 text-center">
-            <p class="text-gradient text-2xl font-black" data-count={s.n} data-suffix={s.suffix}>0{s.suffix}</p>
+            <p class="text-gradient text-2xl font-bold" data-count={s.n} data-suffix={s.suffix}>0{s.suffix}</p>
             <p class="mt-1 text-xs text-muted-foreground">{s.label}</p>
           </div>
         ))}

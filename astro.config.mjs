@@ -22,10 +22,15 @@ export default defineConfig({
     }),
   ],
   vite: {
-    plugins: [tailwindcss()],
-    resolve: {
-      // Workers runtime lacks MessageChannel — use the edge build of react-dom/server
-      alias: { 'react-dom/server': 'react-dom/server.edge' },
-    },
+    plugins: [
+      tailwindcss(),
+      {
+        name: 'react-dom-edge-alias',
+        // Workers runtime lacks MessageChannel — alias react-dom/server to its edge
+        // build, but only for the production bundle (dev SSR runs on Node where it exists).
+        apply: 'build',
+        config: () => ({ resolve: { alias: { 'react-dom/server': 'react-dom/server.edge' } } }),
+      },
+    ],
   },
 });
